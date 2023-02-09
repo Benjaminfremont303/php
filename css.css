@@ -1,0 +1,14 @@
+table, td{
+
+    border: 2px solid skyblue;
+    border-collapse: collapse;
+    vertical-align: middle;
+    min-height: 20em;
+    min-width: 20em;
+
+    
+}
+td{
+    padding: 8px;
+    text-align: center;
+}
