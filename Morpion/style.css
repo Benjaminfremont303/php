@@ -1,0 +1,11 @@
+table, td, tr{
+    border-collapse: collapse;
+    border: solid black 2px;
+}
+td{
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    font-size: xx-large;
+    /* vertical-align: middle; */
+}
