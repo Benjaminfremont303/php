@@ -1,6 +1,14 @@
+body{
+    background-image: url("fond.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 table, td, tr{
     border-collapse: collapse;
-    border: solid black 2px;
+    border: solid rgb(0, 0, 0) 3px;
+   box-shadow: 3px 3px 3px 3px;
 }
 td{
     text-align: center;
@@ -8,4 +16,23 @@ td{
     height: 150px;
     font-size: xx-large;
     /* vertical-align: middle; */
+}
+.centre{
+    padding: 250px;
+
+}
+table{
+  margin: auto auto;
+  background-color: rgb(120, 176, 226);
+ 
+}
+.text{
+    font-size: 5em;
+    font-family: 'Tourney', cursive;
+    color: red;
+    text-align: center;
+
+}
+.reload{
+    height: 100px;
 }

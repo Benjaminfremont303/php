@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Josefin+Sans:ital,wght@0,400;1,300&family=Open+Sans&family=Tourney:ital@0;1&display=swap" rel="stylesheet">
+
 </head>
 <body> 
+    <div class = centre>
     <table>
         <?php
             //  Je demarre la session
@@ -22,11 +25,11 @@
                 de la case ou le joueur a clique.
                 Joueur est un nombre 1 ou 2 qui nous indique qui a clique
             */
-
+            
             $icone = array();
-            $icone[0] = "_";
-            $icone[1] = "X";
-            $icone[2] = "O";
+            $icone[0] = '<img src="cliquez-ici.png">';
+            $icone[1] = '<img src="pomme.png">';
+            $icone[2] = '<img src="peche.png">';
 
             $ligneJouee=(int)filter_input(INPUT_GET,"ligne", FILTER_VALIDATE_INT);
             $colonneJouee=(int)filter_input(INPUT_GET,"colonne", FILTER_VALIDATE_INT);
@@ -119,7 +122,7 @@
 <?php 
     if($aGagne) {
         $gagnant=$icone[$aGagne];
-        echo "$gagnant a gagné"; 
+        echo "<div class='text'>  $gagnant EST LE WINNER!! </div>"; 
     }else 
     { 
         if($casesJouables==0) {
@@ -127,8 +130,11 @@
         }
     }
     if($casesJouables==0) {
-        echo "<br><a href=?colonne=0&ligne=0&joueur=0>Rejouer ?</a>";
+        echo "<br><a href=?colonne=0&ligne=0&joueur=0><img  class='reload' src='play.png'></a>";
     }
+
+
 ?>
+</div>
 </body>
 </html>
