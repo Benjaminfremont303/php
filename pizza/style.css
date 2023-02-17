@@ -1,49 +1,167 @@
 *{
     margin: 0;
     padding: 0;
-    list-style: none;
     text-decoration: none;
+    font-family: 'Sofia', cursive;
+    font-size: 20px;
+}
+body{
+    background: linear-gradient(90deg, rgba(7,140,0,0.6782913849133403) 0%, rgba(70,206,207,0) 50%, rgba(255,0,0,0.8351541300113796) 100%);    color: white; 
+    width: 80%;
+    margin: auto auto;
+    height: 100%;
+}
+
+header{
+    display: flex;
+    flex-wrap: wrap;
+}
+h1{
+    text-decoration: underline;
+    text-align: center;
+    font-size: 25px;
+    text-shadow: 0 0 2px rgb(19, 17, 16), 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60;
+    padding: 10px;
+    color: black;
+}
+#introp{
+    text-align: center;
+    color: black;
+}
+#intro{
+    display: block;
+    padding: 20px;
+    margin: 20px;
+    height: 150px;
+    background-color: rgb(255, 234, 113);
+    box-shadow:rgba(0, 0, 0, 0.678) 1px 1px 1px 1px;
+    border: 4mm ridge rgba(211, 220, 50, .6);
 }
 #logo{
-    color: rgb(108, 174, 231);
-    padding: 10px;
-    border-radius: 3px;
-    height: 150px;
-    background-color: black;
-    margin-bottom: 20px;
+    height: 60px;
+    margin: auto auto;
+    position: relative;
+    left: 40%;
 }
-p{
-    text-align: center;
-    padding-bottom: 15px;
+#logo1{
+    height: 100px;
+    position: absolute;
+    left: 50;
+    top: 10px;
 }
 figure{
-    display: flex;
     position: relative;
     padding: 50px;
-    width: 200px;
     border-radius: 5px;
-    box-shadow: 3px 3px 3px rgb(141, 140, 140);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.534);
+    height: 145px;
+    width: 145px;
+    margin: auto auto;
 }
 #emporter{
-    background-color: rgb(120, 255, 255);
-    justify-content: center;
-    margin: auto auto;
+    color: rgb(255, 255, 255);
+    background-color:#1f8b28;
     border: solid 3px black;
-    margin-bottom: 10px;
 }
 #livraison{
- background-color: rgb(49, 116, 116);
- justify-content: center;
- margin: auto auto;    
+ margin-top: 10px;
+ background-color: red;  
  border: solid 3px black;
 }
+#reserver{
+    color: black;
+    background-color: white;
+    border: solid 3px black;
+   }
 .emOuLIv{
-    height: 200px;
+    max-height: 150px;
+    text-align: center;
+    position: relative;
+    right: 25px;
 }
+.emOuLIv2{
+    max-height: 150px;
+    text-align: center;}
+    
 figcaption{
     font-size: 25px;
     position: absolute;
     left: auto;
     top: 10px;
-
 }
+main{
+    background-color: rgba(255, 255, 255, 0.726);
+    color: black;
+    padding: 20px;
+    margin: 30px;
+    border: solid 1px black;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.548);
+    border-radius: 10px;
+}
+h2{
+    text-decoration: underline;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+
+    text-shadow: 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60;
+}
+details{
+   background-color: red;
+    
+}
+#carrouseltext{
+    color: black;
+    text-align: center;
+    padding: 10px;
+    background-color: #1f8b28;
+    border:solid 1px black;
+}
+#spe img{
+    width: calc(60% - 20px);
+    padding: 10px;
+    margin: auto auto;
+    display: block;
+}
+footer{
+    margin-top: 30px;
+    background-color: rgba(255, 0, 0, 0.651);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.548);
+    margin-bottom: 50px;
+    border: solid 1px black;
+}
+.contact{
+    height: 150px;
+    padding: 20px;
+    position: relative;
+    left: 25%;
+}
+#info{
+    border: solid black 3px;
+}
+#adresse{
+    background-color: #1f8b28;
+    padding: 20px;
+    text-align: center;
+}
+#horaires{
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    color: black;
+}
+#telephone{
+    background-color: red;
+    text-align: center;
+    padding-bottom: 20px;
+}
+iframe{
+    width: 91%;
+    margin: auto auto;
+    padding: 10px;
+    border: solid 3px black;
+}
+
