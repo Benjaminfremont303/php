@@ -10,7 +10,7 @@ for ($j=$i+1; $j<$countt; $j++)
     [$tab[$i],$tab[$j]] = [$tab[$j],$tab[$i]];
 }
 }
-print_r($tab)
+print_r($countt)
 
 
 ?>

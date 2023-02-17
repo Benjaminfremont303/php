@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<?PHP
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "pizza";
+
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
+  
+?>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -34,53 +45,37 @@
     </header>
     <main>
         <h2>Nos Menus :</h2>
-<details>
-<summary id="carrouseltext">Menu pizza prenium :</summary>
-    <div id="spe">
-      <img src="img/pizza5.gif" alt="">
-      <p> description</p>
-    </div>
-  </details>
-  <details>
-    <summary id="carrouseltext">Menu pizza samedi soir :</summary>
-        <div id="spe">
-          <img src="img/pizza4.jpg" alt="">
-          <p> description</p>
+        <?php
+        $sql ="SELECT * FROM pizza ";
+        $requete = $conn->query($sql);
+        $pizzas = $requete->fetchall();
+        ?>
 
-        </div>
-      </details>
+  
+  
+      <?php
+        $sql ="SELECT * FROM pizza ";
+        // utiliser la fonction exec() car aucun résultat n'est renvoyé
+        $requete = $conn->query($sql);
+        $pizzas = $requete->fetchall();
+        foreach($pizzas as $pizza){
+          $nomPizza=$pizza["nom"];
+          $id_pizza=$pizza["Id_pizza"];
+      ?>
       <details>
-<summary id="carrouseltext">Menu pizza petit budget :</summary>
-    <div id="spe">
-      <img src="img/pizza3.jpg" alt="">
-      <p> description</p>
+            <summary id="carrouseltext"><?php echo $nomPizza; ?> :
 
-    </div>
-  </details>
-  <details>
-    <summary id="carrouseltext">Menu pizza sans fromage :</summary>
-        <div id="spe">
-          <img src="img/pizza2.jpg" alt="">
-          <p> description</p>
+              </summary>
+              <div id="spe">
+                <?php
+                  echo "<img src='img/pizza" .$id_pizza. ".jpg' alt=''>";
+                ?>
+                <p> description</p>
 
-        </div>
-      </details>
-      <details>
-        <summary id="carrouseltext">Menu pizza végtarienne :</summary>
-            <div id="spe">
-              <img src="img/pizza1.jpg" alt="">
-              <p> description</p>
-
-            </div>
-          </details>
-          <details>
-            <summary id="carrouseltext">Menu pizza-mini :</summary>
-                <div id="spe">
-                  <img src="img/pizza3.jpg" alt="">
-                  <p> description</p>
-
-                </div>
-              </details>
+              </div>
+            </details>
+        <?php } ?>
+          
   
   </main>
     <footer>
