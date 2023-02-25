@@ -32,18 +32,32 @@ if(isset($_GET['ligne'], $_GET['colonne'])){
 		$_SESSION['player'] = 2;
 	}
 	var_dump($_SESSION['player']);
-	
-	if($_SESSION['player'] == 2){
-		$_SESSION['player'] = 1;
-	}
-	elseif($_SESSION['player'] == 1){
-		$_SESSION['player'] = 2;
-	}
-	$_SESSION['jeu'][$ligne][$colonne] = $_SESSION['player'];
-	
 
+
+	if($_SESSION['player'] == 2){
+
+	$_SESSION['jeu'][$ligne][$colonne] = $_SESSION['player'];
+	}if($_SESSION['player'] == 1){
+	$ligne = rand(0,2);
+	$colonne = rand(0,2);
+
+
+		if($_SESSION['jeu'][$ligne][$colonne] == 0 ){
+			
+			$_SESSION['jeu'][$ligne][$colonne] = $_SESSION['player'];
+
+			echo "joueur";
+			
 
 		}
+	  }
+	}
+
+ 
+		
+
+
+
 
 
 
@@ -53,7 +67,7 @@ for($ligne = 0; $ligne < 3; $ligne++){
 	for($colonne = 0; $colonne < 3; $colonne++){
 
 		if($_SESSION['jeu'][$ligne][$colonne] == 0){
-			echo "<td><a href=?ligne=$ligne&colonne=$colonne>[]</a></td>";
+			echo "<td><a href=?ligne=$ligne&colonne=$colonne>_</a></td>";
 			$casesJouables++;
 			
 		}elseif($_SESSION['jeu'][$ligne][$colonne] == 1){
@@ -70,6 +84,11 @@ echo '</table>';
 
 $_SESSION["jeu"] = $_SESSION["jeu"];
 
+if($_SESSION['player'] == 1){
+	$_SESSION['player'] = 2;}
+if($_SESSION['player'] == 2){
+	$_SESSION['player'] = 1;
+}
 if($casesJouables == 0){
 	unset($_SESSION['jeu']);
 	unset($_SESSION['player']);

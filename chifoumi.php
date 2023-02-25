@@ -7,7 +7,6 @@
 <option name="joueur" valeur="Pierre">pierre</option>
 </select>
 
-<!-- <textarea name="subject" placeholder="me laisser un message et vos coordonnées"></textarea>'; -->
 <input class="bouton2" type="submit" value="ATTAQUER!" name="envoyer">
 </form>
 

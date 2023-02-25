@@ -21,10 +21,8 @@ if ( isset( $_GET['envoyer'] ) ) {
 				if($tour === 10){
 					echo "votre compte est pas bon";
 					$formulaire = 0;
-					unset($_SESSION['essais']);
-					unset($_SESSION['nombre']);
-					unset($_SESSION['max']);
-					unset($_SESSION['min']);
+					unset($_SESSION['tour']);
+					unset($_SESSION['alea']);
 					session_destroy();
 					echo  '<a href="index.php">Rejouer</a>';
 				}
@@ -32,10 +30,8 @@ if ( isset( $_GET['envoyer'] ) ) {
 				if ($saisie === $aleatoire){
 					echo "vous avez gagné \n";
 					$formulaire = 0;
-					unset($_SESSION['essais']);
-					unset($_SESSION['nombre']);
-					unset($_SESSION['max']);
-					unset($_SESSION['min']);
+					unset($_SESSION['tour']);
+					unset($_SESSION['alea']);
 					session_destroy();
 					echo '<a href="index.php">Rejouer</a>';
 				}elseif ($saisie < $aleatoire){
