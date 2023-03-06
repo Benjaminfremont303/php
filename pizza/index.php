@@ -24,8 +24,8 @@ $dbname = "pizza";
 </head>
 <body>
   <div id="intro">
-    <h1>Bienvenue sur Chapeau la pizza : </h1>
-    <p id="introp"> les pizza qui déchire grave</p>
+    <h1>Bienvenue sur Chapeau la pizza</h1>
+  
     <img id="logo1" src="img/pizzalogo.png" alt="logo">
     <img id="logo" src="img/logo.gif" alt="">
 </div>
@@ -61,6 +61,9 @@ $dbname = "pizza";
         foreach($pizzas as $pizza){
           $nomPizza=$pizza["nom"];
           $id_pizza=$pizza["Id_pizza"];
+          $des_pizza=$pizza["description"];
+          $prix_pizza=$pizza["prix pizza seul"];
+
       ?>
       <details>
             <summary id="carrouseltext"><?php echo $nomPizza; ?> :
@@ -69,9 +72,10 @@ $dbname = "pizza";
               <div id="spe">
                 <?php
                   echo "<img src='img/pizza" .$id_pizza. ".jpg' alt=''>";
-                ?>
-                <p> description</p>
-
+                
+                  echo "<p class='descrip'> $des_pizza </p>";
+                  echo " $prix_pizza euros"
+?>
               </div>
             </details>
         <?php } ?>
