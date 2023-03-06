@@ -28,7 +28,7 @@ echo "la somme est". ' ' .add(100). "\n";
 
 
 
-echo "la factorielle est ". ' ' .factorielle(8);
+echo "la factorielle est ". ' ' .factorielle(5);
 
 
 
