@@ -6,7 +6,7 @@ $username = "root";
 $password = "";
 $dbname = "pizza";
 
-  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
   
 ?>
@@ -20,28 +20,33 @@ $dbname = "pizza";
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <script src="script.js"></script>
+    <title>Chapeau la pizza</title>
 </head>
 <body>
-  <div id="intro">
-    <h1>Bienvenue sur Chapeau la pizza</h1>
-  
-    <img id="logo1" src="img/pizzalogo.png" alt="logo">
-    <img id="logo" src="img/logo.gif" alt="">
-</div>
     <header>
+  </div>  <div class="panierSlide">
+            <a class="panier" href=""><img src="img/panier.png" alt=""></a>
+        </div>
+    <div id="intro">
+      <h1>Bienvenue sur Chapeau la pizza</h1>
+      <img id="logo1" src="img/pizzalogo.png" alt="logo">
+      <img id="logo" src="img/logo.gif" alt="">
+    </div>
+    <div class="choix">
           <figure id="emporter">
               <a href=""><img class="emOuLIv" src="img/emporter.gif"></a>
               <figcaption>À emporter</figcaption>
           </figure>
+          <figure id="livraison">
+            <a href=""><img class="emOuLIv" src="img/ez.gif"></a>
+            <figcaption>Livraison</figcaption>
+            </figure>
           <figure id="reserver">
               <a href=""><img class="emOuLIv2" src="img/giphy.gif"></a>
               <figcaption>Réserver</figcaption>
           </figure>
-          <figure id="livraison">
-            <a href=""><img class="emOuLIv" src="img/ez.gif"></a>
-            <figcaption>Livraison</figcaption>
-        </figure>
+      
     </header>
     <main>
         <h2>Nos Menus :</h2>
@@ -72,9 +77,8 @@ $dbname = "pizza";
               <div id="spe">
                 <?php
                   echo "<img src='img/pizza" .$id_pizza. ".jpg' alt=''>";
-                
                   echo "<p class='descrip'> $des_pizza </p>";
-                  echo " $prix_pizza euros"
+                  echo "<p class='prix'>" .($prix_pizza/100). "euros </p>";
 ?>
               </div>
             </details>

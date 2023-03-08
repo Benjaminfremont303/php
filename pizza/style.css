@@ -6,16 +6,35 @@
     font-size: 20px;
 }
 body{
-    background: linear-gradient(90deg, rgba(7,140,0,0.6782913849133403) 0%, rgba(70,206,207,0) 50%, rgba(255,0,0,0.8351541300113796) 100%);    color: white; 
+    /* background: linear-gradient(90deg, rgba(7,140,0,0.6782913849133403) 0%, rgba(70,206,207,0) 50%, rgba(255,0,0,0.8351541300113796) 100%);    color: white;  */
+    background-image: url(img/images.jpg);
+    background-position: center;
     width: 80%;
     margin: auto auto;
     height: 100%;
 }
+.panierSlide{
+    
+    position: absolute;
+   
+}
+.panierSlideOuvert{
+    background-color: #1f8b28e1;
+    height: 900px;
+    width: 500px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    border: 3px solid;
+    border-radius: 5px;
 
-header{
+}
+.choix{
     display: flex;
     flex-wrap: wrap;
 }
+
 h1{
     text-decoration: underline;
     text-align: center;
@@ -24,16 +43,13 @@ h1{
     padding: 10px;
     color: black;
 }
-.descrpt{
-    width: 50px;
-}
 #intro{
     display: block;
     padding: 20px;
     margin: 20px;
-    height: 170px;
+    height: 140px;
     box-shadow:rgba(0, 0, 0, 0.678) 1px 1px 1px 1px;
-    border: 4mm ridge rgba(211, 220, 50, .6);
+    border: 4mm ridge rgb(255, 0, 0);
     background-image: url('img/fond1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -43,12 +59,12 @@ h1{
     height: 60px;
     margin: auto auto;
     position: relative;
-    left: 40%;
+    left: 1000px;
 }
 #logo1{
     height: 100px;
     position: absolute;
-    left: 50;
+    left: 50px;
     top:130px;
 }
 figure{
@@ -63,23 +79,20 @@ figure{
 #emporter{
     color: rgb(255, 255, 255);
     background-color:#1f8b28;
-    border: solid 3px black;
+    border: solid 3px black;    
 }
 #livraison{
  margin-top: 10px;
- background-color: red;  
+ background-color: rgb(255, 255, 255);  
  border: solid 3px black;
 }
 #reserver{
     color: black;
-    background-color: white;
+    background-color: rgb(255, 0, 0);
     border: solid 3px black;
    }
 .emOuLIv{
     max-height: 150px;
-    text-align: center;
-    position: relative;
-    right: 25px;
 }
 .emOuLIv2{
     max-height: 150px;
@@ -92,7 +105,7 @@ figcaption{
     top: 10px;
 }
 main{
-    background-color: rgba(255, 255, 255, 0.726);
+    background-image: url("img/bois.jpg");
     color: black;
     padding: 20px;
     margin: 30px;
@@ -116,7 +129,7 @@ details{
     color: black;
     text-align: center;
     padding: 10px;
-    background-color: #1f8b28;
+    background-color: #c4c4c4;
     border:solid 1px black;
 }
 #spe img{
@@ -127,12 +140,13 @@ details{
 }
 footer{
     margin-top: 30px;
-    background-color: rgba(255, 0, 0, 0.651);
+    background-image: url("img/bois.jpg");
     padding: 20px;
     border-radius: 10px;
     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.548);
     margin-bottom: 50px;
     border: solid 1px black;
+    
 }
 .contact{
     height: 150px;
