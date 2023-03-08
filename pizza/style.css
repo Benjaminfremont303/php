@@ -13,22 +13,27 @@ body{
     margin: auto auto;
     height: 100%;
 }
-.panierSlide{
-    
-    position: absolute;
-   
+.panier{
+    position: fixed;
+    left: 50px;
+}
+.text{
+    background-color: aliceblue;
+    height: 300px;
 }
 .panierSlideOuvert{
     background-color: #1f8b28e1;
-    height: 900px;
+    height: 200px;
     width: 500px;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     z-index: 999;
     border: 3px solid;
     border-radius: 5px;
-
+}
+.listeArticle, li{
+    text-align: center;
 }
 .choix{
     display: flex;
@@ -122,8 +127,7 @@ h2{
     text-shadow: 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60, 0 0 2px #d60;
 }
 details{
-   background-color: red;
-    
+   background-color: red;   
 }
 #carrouseltext{
     color: black;
@@ -133,10 +137,15 @@ details{
     border:solid 1px black;
 }
 #spe img{
-    width: calc(60% - 20px);
+    width: calc(40% - 20px);
     padding: 10px;
     margin: auto auto;
     display: block;
+}
+.descrip{
+    text-align: center;
+    margin: auto auto;
+    padding: 30px;
 }
 footer{
     margin-top: 30px;

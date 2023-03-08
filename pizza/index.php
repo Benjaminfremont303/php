@@ -20,14 +20,20 @@ $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
     <title>Chapeau la pizza</title>
 </head>
 <body>
     <header>
-  </div>  <div class="panierSlide">
-            <a class="panier" href=""><img src="img/panier.png" alt=""></a>
-        </div>
+
+    <div class="panierSlide">
+            <img class="panier" src="img/panier.png" alt="">
+            <?php
+            $text = "<div class=text> </div>";
+            echo "<ul class=listeArticle></ul>" 
+            ?>
+
+    </div>
     <div id="intro">
       <h1>Bienvenue sur Chapeau la pizza</h1>
       <img id="logo1" src="img/pizzalogo.png" alt="logo">
@@ -50,17 +56,12 @@ $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     </header>
     <main>
         <h2>Nos Menus :</h2>
-        <?php
-        $sql ="SELECT * FROM pizza ";
-        $requete = $conn->query($sql);
-        $pizzas = $requete->fetchall();
-        ?>
+     
 
   
   
       <?php
         $sql ="SELECT * FROM pizza ";
-        // utiliser la fonction exec() car aucun résultat n'est renvoyé
         $requete = $conn->query($sql);
         $pizzas = $requete->fetchall();
         foreach($pizzas as $pizza){
@@ -76,6 +77,7 @@ $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
               </summary>
               <div id="spe">
                 <?php
+                  echo " <p class='add'>ajouter +</p> ";
                   echo "<img src='img/pizza" .$id_pizza. ".jpg' alt=''>";
                   echo "<p class='descrip'> $des_pizza </p>";
                   echo "<p class='prix'>" .($prix_pizza/100). "euros </p>";
