@@ -26,13 +26,10 @@ $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 <body>
     <header>
 
-    <div class="panierSlide">
-            <img class="panier" src="img/panier.png" alt="">
-            <?php
-            $text = "<div class=text> </div>";
-            echo "<ul class=listeArticle></ul>" 
-            ?>
-
+    <div class="panierSlide">       
+      <img class="panier" src="img/panier.png" alt="">
+           
+      <ul class="boite"></ul>
     </div>
     <div id="intro">
       <h1>Bienvenue sur Chapeau la pizza</h1>
@@ -61,9 +58,9 @@ $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
   
   
       <?php
-        $sql ="SELECT * FROM pizza ";
-        $requete = $conn->query($sql);
-        $pizzas = $requete->fetchall();
+       $sql = "SELECT * FROM pizza ";
+       $requete = $conn->query($sql);
+       $pizzas = $requete->fetchall();
         foreach($pizzas as $pizza){
           $nomPizza=$pizza["nom"];
           $id_pizza=$pizza["Id_pizza"];
@@ -71,13 +68,13 @@ $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $prix_pizza=$pizza["prix pizza seul"];
 
       ?>
-      <details>
+      <details class="donnee" id = "<?php echo 'pizza_'; echo $id_pizza ?>" value="<?php echo $nomPizza?>">
             <summary id="carrouseltext"><?php echo $nomPizza; ?> :
 
               </summary>
               <div id="spe">
                 <?php
-                  echo " <p class='add'>ajouter +</p> ";
+                  echo "<button onclick='add(\"$nomPizza\",$prix_pizza, $id_pizza)' class ='add'>Click me</button>" ;
                   echo "<img src='img/pizza" .$id_pizza. ".jpg' alt=''>";
                   echo "<p class='descrip'> $des_pizza </p>";
                   echo "<p class='prix'>" .($prix_pizza/100). "euros </p>";

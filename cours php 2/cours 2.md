@@ -149,3 +149,8 @@ Fonctions SQL
     SQL GROUP_CONCAT()
     SQL VERSION()
 
+les jointures innerjoin
+-----------------------
+Il doit avoir une table de liaison  entre deux tables
+
+SELECT * FROM `commande` INNER JOIN pizza on commande.id_pizza = pizza.Id_pizza

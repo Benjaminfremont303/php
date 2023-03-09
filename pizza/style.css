@@ -15,7 +15,8 @@ body{
 }
 .panier{
     position: fixed;
-    left: 50px;
+    left:0;
+    z-index: 999;
 }
 .text{
     background-color: aliceblue;
@@ -23,7 +24,7 @@ body{
 }
 .panierSlideOuvert{
     background-color: #1f8b28e1;
-    height: 200px;
+    min-height: 200px;
     width: 500px;
     position: fixed;
     left: 0;
@@ -32,8 +33,12 @@ body{
     border: 3px solid;
     border-radius: 5px;
 }
-.listeArticle, li{
-    text-align: center;
+.boite{
+    position: absolute;
+    left: -700px;
+}
+.boiteappear{
+    left: 150px;
 }
 .choix{
     display: flex;

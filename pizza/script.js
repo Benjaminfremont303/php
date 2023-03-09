@@ -18,15 +18,41 @@
 let panier = document.querySelector(".panier");
 let panierS = document.querySelector(".panierSlide");
 let ajouter = document.querySelector(".add");
-let nomPizza = document.querySelector(".carrouseltext");
-let prixPizza = document.querySelector(".prix");
-let listeArticle = document.querySelector(".listeArticle"); 
-let text = document.querySelector(".text");
+let donnee = document.getElementsByClassName("donnee");
+
+// let nomPizza = document.querySelector("#carrouseltext").innerHTML;
+// let prixPizza = document.querySelector(".prix").innerHTML;
+let boite = document.querySelector(".boite");
+let num = 1;
+
+let tabPanier=Array();
+
+for (i in donnee) {
+    console.log(donnee[i]);
+    let t = donnee[i];
+    console.log(t.id);
+    tabPanier.push(t.id);
+  }
+
+console.log(tabPanier);
+
 
 panier.addEventListener("click", function(){
     panierS.classList.toggle("panierSlideOuvert");
+    boite.classList.toggle("boiteappear");
+
 });
 
-ajouter.addEventListener("click", function(){
-    text.innerHTML += '<?php echo $nomPizza; ?>';
-});
+
+function add(nomPizza, prixPizza, id){
+
+
+ if (true){
+    boite.innerHTML +=`<li> ${nomPizza}  ${prixPizza/100} ${id}  ${num}</li>`     
+       num++;
+
+};
+
+
+
+
