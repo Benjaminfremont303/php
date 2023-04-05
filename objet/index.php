@@ -1,6 +1,7 @@
 <?php
 
 class guitar{
+    protected static $made_in_china;
     private $type;
     private $nbr_de_corde;
     private $bois;
