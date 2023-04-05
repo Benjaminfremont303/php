@@ -1,7 +1,7 @@
 <?php
 
 class guitar{
-    private $type;
+    public $type;
     private $nbr_de_corde;
     private $bois;
     private $pickup; 
@@ -13,12 +13,14 @@ class guitar{
         $this->bois = $b;
         $this->pickup = $pick;
         $this->nbr_de_pot = $p;
+        echo "Guitare complete";
     }
 
     public function getType(){
-        return "C'est une $this->type <br>". "Avec $this->nbr_de_corde <br>". "en bois de $this->bois <br>". "elle a des micros $this->pickup <br>". "$this->nbr_de_pot potentiometre";
+        return "c'est une $this->type";
     }
 }
 
 $newGuitar1 = new guitar('Les Pauls', '6 cordes', 'Palownia', 'humbucker', '4 pot');
-echo $newGuitar1->getType();
+var_dump($newGuitar1);
+//echo $newGuitar1->type;
