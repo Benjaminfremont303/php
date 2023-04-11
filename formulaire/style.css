@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+}
+.nav{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 30px;
+    height: 60px;
+    background-color: rgb(80, 95, 179);
+    align-items: center;
+}
+.nav li a{
+    color: white;
+}
+.nav li a:hover{
+    color: black;
+}
+.nav li a:active{
+    background-color: blueviolet;
+}
