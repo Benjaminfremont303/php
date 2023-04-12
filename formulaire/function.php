@@ -1,3 +1,11 @@
+<?php
+function dump ($variable){
+    echo '<pre>';
+    var_dump($variable);
+    echo '</pre>';
+}
+?>
+
 <?php 
 if (!function_exists('nav_item')){
     function nav_item  (string $lien, string $titre, $linkClass): string{
@@ -20,4 +28,26 @@ function nav_menu (string $linkClass = ''): string{
     nav_item('/contact.php', 'Contact', $linkClass);
 
 };
+?><?php ?>
+<?php 
+function checkbox(string $name, string $value, array $data): string
+{
+    $attributes = '';
+    if (isset($data[$name]) && in_array($value, $data[$name])){
+            $attributes .= 'checked'; 
+    }
+    return <<<HTML
+      <input type="checkbox" name="{$name}[]" value="$value" $attributes> 
+HTML;
+}
+function radio(string $name, string $value, array $data): string
+{
+    $attributes = '';
+    if (isset($data[$name]) && $value === $data[$name]){
+            $attributes .= 'checked'; 
+    }
+    return <<<HTML
+      <input type="radio" name="{$name}" value="$value" $attributes> 
+HTML;
+}
 ?>
