@@ -11,20 +11,33 @@ $cornets = [
 ];
 $supplements =[
     'pépites de chocolat' => 1,
-    'chantilly' => 0,5
+    'chantilly' => 0.5
 ];
 
 $title = "composez votre glace";
 $ingredient = [];
-$prixTotal = 0;
+$total = 0;
 
-if (isset($_GET['parfum'])){
-    foreach($_GET['parfum'] as $parfum){
-        if(isset($parfum[$parfum])){
-            dump($parfum);
+foreach(['parfum', 'supplement'] as $glace){
+    if (isset($_GET[$glace])){
+        $liste = $glace . 's';
+        if (is_array($_GET[$name]))
+        foreach($_GET[$glace] as $value){
+            if(isset($$liste[$value])){
+                $ingredients[] = $glace;
+                $total += $$liste[$value];
+            }
         }
     }
 }
+if (isset($_GET['cornet'])){
+   $cornet = $_GET['cornet'];
+        if(isset($cornets[$cornet])){
+            $ingredients[] = $cornet;
+            $total += $cornets[$cornet];
+    }
+}
+
 ?>
 <?php
 $aDevine = 150;
@@ -76,6 +89,16 @@ if (isset($_POST['chiffre'])){
 
 <button type="submit">Composez une glace</button>
 </form>
+
+<ul>
+    <h2>Ici votre glace ultime au prix ultime dans un monde ultime</h2>
+    <?php foreach($ingredients as $ingredient): ?>  
+        
+    <li>
+    <?php echo $ingredient; ?></li>
+    <?php endforeach; ?>
+    <p> <strong>Prix: </strong> <?= $total ?></p>
+</ul>
 
 
 */ htmlentities /*
