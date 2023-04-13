@@ -15,31 +15,33 @@ $supplements =[
 ];
 
 $title = "composez votre glace";
-$ingredient = [];
+$ingredients = [];
 $total = 0;
 
-foreach(['parfum', 'supplement'] as $glace){
+foreach(['parfum', 'supplement', 'cornet'] as $glace){
     if (isset($_GET[$glace])){
         $liste = $glace . 's';
-        if (is_array($_GET[$name]))
-        foreach($_GET[$glace] as $value){
+        $choix = $_GET[$glace];
+        if (is_array($choix)){
+
+            if (is_array($_GET[$glace]))
+        foreach($choix as $value){
             if(isset($$liste[$value])){
-                $ingredients[] = $glace;
-                $total += $$liste[$value];
+                $ingredients[] = $value;
+                $total += $$liste[$value];   
+                    }
+                }
+        } else {
+            if (isset($$liste[$value])){
+                 $cornet = $_GET[$value];
+           
+                $ingredients[] = $value;
+                 $total += $$liste[$value];
             }
         }
     }
 }
-if (isset($_GET['cornet'])){
-   $cornet = $_GET['cornet'];
-        if(isset($cornets[$cornet])){
-            $ingredients[] = $cornet;
-            $total += $cornets[$cornet];
-    }
-}
 
-?>
-<?php
 $aDevine = 150;
 $erreur = null;
 $succes = null;
