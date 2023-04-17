@@ -8,8 +8,8 @@ function dump($variable){
 
 function liste (string $lien, string $titre, string $class = 'nav' ): string{
     $balise = "a";
-    if($_SERVER['SERVER_NAME'] === $lien){
-        $balise = "<p>";
+    if($_SERVER['REQUEST_URI'] === $lien){
+        $balise = "p";
     }
  return <<<HTML
             <li class="$class"><$balise href="$lien">$titre</$balise></li> 
@@ -26,14 +26,16 @@ return <<<HTML
     <input class="$titre" type="checkbox" name="{$titre}[]" value="$value" $attritues>
 HTML;
 }
-
-function selection(string $titre, string $value, array $data): string{
+function selectionSimple(string $titre, string $value, array $data): string{
     $attritues = '';
 if(isset($data[$titre]) && $value === $data[$titre]){
-    $attritues .= 'checked';
-}    
-    return <<<HTML
-    <input type="radio" name="{$titre}[]" $attritues>$titre</input>
+    $attritues = 'checked';
+} 
+return <<<HTML
+
+    <input class="$titre" type="radio" name="{$titre}" value="$value" $attritues>
 HTML;
 }
+
+
 
