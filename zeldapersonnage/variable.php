@@ -17,15 +17,15 @@ $reponse2 = [
  $question3 ='<strong>Vous rentrez chez vous quand une famille vous interpelle. "Bonjour nous sommes sans abri et nous n\'avons pas  manger depuis plusieurs jours", au même moment le coffre de voiture de votre voisin s\'ouvre avec 4 sacs de nourriture remplit, la famille n\'a pas remarquée et elle commenece à partir. </strong>
  <p>(Il n\'y aura aucune consèquence pour vous et votre vosin gagne bien sa vie)</p>';
 $reponse3 = [
-    'Je vole les sacs et les donne à la famille sans abri',
-    'Je garde les sacs pour les rendre à son vrai propriètaire'
+    'Je vole les sacs et les donne à la famille sans abri' => 1,
+    'Je garde les sacs pour les rendre à son vrai propriètaire' =>-1
 ];
  $question4 ='<strong>Votre confiserie qui cartonne en ce moment a été envahie par des créatures appelées Gremlins. C\'est ce que vous dit un ami, ces créatures sont particulièrement dangereuses. Mais cet ami a l\'habitude de vous faire des blagues.
  Et si vous n\'ouvrez pas demain, des centaines de personnes seront déçues de ne pas recevoir leurs bonbons.</strong>
  <p>(Votre ami n\'est maintenant plus joignable)</p>';
 $reponse4 = [
-    'Je deçois des centaines personnes',
-    'je demande à mon employé de faire l\'ouverture demain car je serai en retard'
+    'Je deçois des centaines personnes' => -1,
+    'je demande à mon employé de faire l\'ouverture demain car je serai en retard' => 2
 ];
  $question5 ='<strong>vous demander à votre meilleur ami de réparer votre voiture, le prix convenu est de 300 euros.
  votre ami répare votre voiture et vous devez le payer.
@@ -48,8 +48,8 @@ $reponse6 = [
 $question7 ='<strong> Vous vous réveillez le matin et vous retrouvez dos à dos dans votre lit avec un violoniste inconscient. Un célèbre violoniste inconscient. On lui a diagnostiqué une maladie des reins mortelle; la Société des Mélomanes a examiné tous les dossiers médicaux disponibles et trouvé que vous seul avez le bon groupe sanguin pour le sauver. Ils vous ont donc enlevé la nuit dernière, et le système circulatoire du violoniste a été branché au vôtre, de sorte que vos reins peuvent être utilisés pour extraire les poisons de son sang ainsi que de votre propre sang. S\'il est débranché de vous désormais, il va mourir; mais dans neuf mois, il aura récupéré de sa maladie, et pourra en toute sécurité être débranché de vous</strong>
  ';
 $reponse7 = [
-    'Je laisse le violoniste accrocher 9 mois et je suspens ma vie',
-    'J\'appelle la police et demande à ce que l\'on me décroche'
+    'Je laisse le violoniste accrocher 9 mois et je suspens ma vie' => 1,
+    'J\'appelle la police et demande à ce que l\'on me décroche' => -1
 ];
  $question8 ='<strong>Vous êtes un médecin spécial qui gère les organes artificiels. Il se trouve qu\'exceptionnellement, il y a une pénurie d\'organes artificiels aujourd\'hui. En consultant le registre, vous voyez une personne dont la jambe est cassée, qui a cinq organes artificiels et qui est dans le coma.
  Vous pouvez lui prélever ces organes, sans aucune conséquence et personne ne le saura jamais, parce que la procédure implique de brûler les défunts.</strong>
