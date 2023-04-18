@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+form{
+    background-color: rgb(124, 138, 110);
+    width: 20vw;
+    margin: auto auto;
+    border: solid 1px black;
+    box-shadow: 5px 5px 5px 5px black;
+    position: relative;
+    top: 50px;
+}
+input, label{
+    display: block;
+    text-align: center;
+    margin: auto auto;
+}
+label{
+    padding: 10px;
+}

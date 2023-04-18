@@ -1,7 +1,7 @@
 <?php require 'header.php'; 
     require 'footer.php'; 
-    require 'personnes.php';
+    require 'formulaireinscription.php';
 ?>
 <?php
 
-?>
+?>   
