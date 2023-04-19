@@ -18,6 +18,5 @@
     <input name="submit" value="envoyer" type="submit">  
 </form>
 <?php 
-var_dump($_POST);
 require 'inscription.php';
 ?>

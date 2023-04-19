@@ -9,7 +9,12 @@
 </head>
 <body>
     <header>
-    
+    <ul class="nav">
+        <li><a elementNav="Menus"  href="">Menus</a></li>
+        <li><a elementNav="Produit"  href="">Produit</a></li>
+        <li><a elementNav="Commentaire"  href="">Commentaire</a></li>
+        <li><a elementNav="Connexion"  href="formulaireconnexion.php">Connexion</a></li>
+        <li><a elementNav="Inscription"  href="formulaireinscription.php">Inscription</a></li>
+    </ul>
     </header>
-
 </html>

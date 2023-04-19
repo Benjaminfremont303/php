@@ -16,7 +16,7 @@
         <?php foreach($reponse2 as $reponses2 => $utilitariste): ?>
         <?= selectionSimple('question2', $reponses2, $_GET) ?> <?= $reponses2 ?> <br>
         <?php endforeach; ?>
-        <label for="question3"><?= $question3 ?></label> <br>
+        <label for="question3"><?= $question3 ?></label> <br> 
         <?php foreach($reponse3 as $reponses3 => $utilitariste): ?>
         <?= selectionSimple('question3', $reponses3, $_GET) ?> <?= $reponses3 ?> <br>
         <?php endforeach; ?>
