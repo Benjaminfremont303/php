@@ -1,5 +1,5 @@
 <?php 
-require 'bdd.php';
+require '../model/bdd.php';
 
 class personnes extends BDD{
     private int $Id_personnes=0;
@@ -19,10 +19,9 @@ class personnes extends BDD{
         $this->fidelite = $f;
         $this->mot_de_passe = $m;
     } 
-
     public function __construct()
     {
-        parent::construct();
+        parent::__construct();
     }
     public static function getById(int $id): personnes {
 
@@ -45,12 +44,19 @@ class personnes extends BDD{
         $req->bindParam(":email", $email, PDO::PARAM_STR);
         $req->execute();
         $objet2 = $req->fetchAll(PDO::FETCH_CLASS, "personnes");
-        if(sizeof($objet2) == 0){
-        return null; }
-        $passbd = $objet2[0]->mot_de_passe;   
-        if($pass == $passbd){
-            return $objet2[0];
+    
+        if(password_verify($pass, $objet2['mot_de_passe'])){
+            echo 'vous etes connecté !'; 
+            $_SESSION['Id_personnes'] = $objet2['Id_personnes'];
+            $_SESSION['nom_personnes'] = $objet2['nom_personnes'];
+            $_SESSION['prenom'] = $objet2['prenom'];
+            // return $objet2[0];
+        }elseif(sizeof($_POST) <= 1){
+            echo 'Au un des champs est vide';
+             return new personnes(); 
         }else{
+            
+            echo 'erreur de la saisie il faut se ressaisir';
             return new personnes();
         }
     }
@@ -83,7 +89,7 @@ class personnes extends BDD{
     }
 }
 // $variable = new personnes();
-// $variable->setAll('lechat','frdddddddddddddddddddddddddddddddj','jeoljjeoe','54454dd5@mrjj','jejhjjhjoleoe','frjj');
+// $variable->setAll('lechhhhhat','frdddddddddddddddddddddddddddddddj','jeoljjeoe','54454kkkkdjjjd5@mrjj','jejhjjhjoleoe','frjj');
 // $variable->save();
 
 

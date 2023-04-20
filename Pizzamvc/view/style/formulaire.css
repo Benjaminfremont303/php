@@ -1,0 +1,18 @@
+.inscription{
+    background-color: rgb(140, 155, 202);
+    width: 20vw;
+    margin: auto auto;
+    border: solid 1px black;
+    box-shadow: 5px 5px 5px 5px black;
+    position: relative;
+    top: 50px;
+    
+}
+.inscription input, .inscription label{
+    display: block;
+    text-align: center;
+    margin: auto auto;
+}
+.inscription label{
+    padding: 5px;
+}

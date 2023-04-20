@@ -36,26 +36,21 @@ header{
 .nav li a::before{
     content: attr(elementNav);
     transition: 0.5s;
-    color: rgb(255, 255, 255);
+    color: blue;
     position: absolute;
     top:28px;
     width: 0;
     overflow: hidden;
 }
-form{
-    background-color: rgb(124, 138, 110);
-    width: 20vw;
-    margin: auto auto;
-    border: solid 1px black;
-    box-shadow: 5px 5px 5px 5px black;
-    position: relative;
-    top: 50px;
+.formulaireCo{
+   display: none;
+ 
 }
-input, label{
-    display: block;
-    text-align: center;
-    margin: auto auto;
+.formVisible{
+    display: block;  
+    overflow: hidden;
+    font-size: 20px;
 }
-label{
-    padding: 10px;
+.connexionInvisible{
+    display: none;
 }

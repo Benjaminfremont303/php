@@ -1,7 +1,7 @@
 <?php
 class BDD extends PDO
 {
-    function construct()
+    function __construct()
     {
         parent::__construct(
             'mysql:host=localhost;dbname=lapizza;charset=utf8',
