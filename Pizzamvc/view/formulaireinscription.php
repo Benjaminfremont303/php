@@ -1,6 +1,6 @@
 <?php 
 require 'header.php';
-
+var_dump($_SERVER);
 ?>
 <form class="inscription" action="formulaireinscription.php" method="POST">
     <label for="nom">Nom</label>
@@ -11,13 +11,11 @@ require 'header.php';
         <input name="adresse" type="text"><br>
     <label for="email">email</label>
          <input name="email"type="email"> <br>
-  
     <label for="email">email confirmation</label>
          <input name="email2"type="email"> <br>
-    <label for="mdp">mot de passe</label>
-        <input name="mdp2" type="PASSWORD"> <br>
-   
-    <label for="mdp">mot de passe confirmation</label>
-        <input name="mdp" type="PASSWORD">  <br>
+    <label for="pass">mot de passe</label>
+        <input name="pass" type="PASSWORD"> <br>
+    <label for="mdp2">mot de passe confirmation</label>
+        <input name="pass2" type="PASSWORD">  <br>
     <input name="submit" value="envoyer" type="submit">  
 </form>

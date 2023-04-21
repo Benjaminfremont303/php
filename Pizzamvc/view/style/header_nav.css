@@ -7,7 +7,6 @@
 header{
     display: flex;
     justify-content: center;
-
 }
 .nav{
     background-color:   #ccc;
@@ -17,15 +16,15 @@ header{
     align-items: center;
     justify-content: center;
 }
-.nav li a{
-    width: 300px;
+.nav li a,.nav li p{
+ 
     padding: 30px;
     background-color: aliceblue;
     color: goldenrod;
     font-size: 30px;
     position: relative;
 }
-.nav li a:hover::before{
+.nav li a:hover::before,.nav li p:hover::before{
         color: rgb(255, 255, 255);
         transition:  0.5s;
         width: 100%;
@@ -33,7 +32,7 @@ header{
         align-items: center;
         justify-content: center;
 }
-.nav li a::before{
+.nav li a::before,.nav li p::before{
     content: attr(elementNav);
     transition: 0.5s;
     color: blue;
@@ -42,6 +41,7 @@ header{
     width: 0;
     overflow: hidden;
 }
+
 .formulaireCo{
    display: none;
  

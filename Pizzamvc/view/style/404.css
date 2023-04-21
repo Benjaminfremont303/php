@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: chartreuse;
+}
+
+p{
+    text-align: center;
+    font-size: 250px;
+    color: aliceblue;
+    text-decoration: underline;
+}

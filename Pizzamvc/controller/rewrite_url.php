@@ -5,7 +5,8 @@ session_start();
 switch ($url){
     case"":
         require "../view/index.php";
-        break;
+        require "connexion.php";
+             break;
     case "style/header_nav.css":
         header("Content-type: text/css");
         require "../view/style/header_nav.css";
@@ -13,6 +14,10 @@ switch ($url){
     case "style/formulaire.css":
         header("Content-type: text/css");
         require "../view/style/formulaire.css";
+        break; 
+    case"style/404.css":
+        header("Content-type: text/css");
+        require "../view/style/404.css";
         break;
     case "js/script.js":
         header("Content-type: text/js");
@@ -20,11 +25,11 @@ switch ($url){
         break;
     case "formulaireinscription.php":
         require "inscription.php";
-
         break;
     case"admin.php":
         require "../view/admin.php";
             break;    
+   
     default:
         require "../view/404.html";
 }

@@ -12,19 +12,46 @@
 </head>
 <body>
     <header>
-    <ul class="nav">
-        <li><a elementNav="Menus"  href="">Menus</a></li>
-        <li><a elementNav="Produit"  href="">Produit</a></li>
-        <li><a elementNav="Commentaire"  href="">Commentaire</a></li>        
-        <li><a elementNav="Inscription"  href="formulaireinscription.php">Inscription</a></li>       
-        <li><a class="connexion" elementNav="Connexion">Connexion</a></li>
+  
+        <?php 
+      
+        function form(string $lien, string $titre, string $class = ''){
+         $balise = "a";
+           if ($_SERVER['REDIRECT_URL'] === $lien){
+                $balise ='p';
+            } 
+            
+            return <<<HTML
+            <li><$balise class="$class" elementNav="$titre" href="$lien">$titre</$balise></li>
+            HTML;
+        }?>
+
+        <ul class="nav">
+        <?php 
+               $user = 'connexion';
+               if(isset($_SESSION['nom_personnes'])){
+               $user = "Bienvenue:".''. $_SESSION['nom_personnes'];
+               }
+        ?>
+        <?=
+            form('/menus.php', 'Menus').
+            form('/produit.php', 'Produit').
+            form('commentaire.php', 'Commentaire').
+            form('/formulaireinscription.php', 'Inscription').
+            form('/',$user, 'connexion');
+        ?>
+     
+        <!-- </ul>   <!-- <li><a elementNav="Menus"  href="">Menus</a></li>
+            <li><a elementNav="Produit"  href="">Produit</a></li>
+            <li><a elementNav="Commentaire"  href="">Commentaire</a></li>        
+            <li><a elementNav="Inscription"  href="formulaireinscription.php">Inscription</a></li>       
+            <li><a class="connexion" elementNav=""></a></li>  -->
         <form class="formulaireCo"action="" method="POST">
-            <label for="email">adresse email</label>
-                 <input name="email"type="email"> 
+            <label for="mail">adresse email</label>
+                 <input name="mail"type="email"> 
             <label for="mdp">mot de passe</label>
                   <input name="mdp" type="text"> 
-             <input name="submit" type="submit">
-            </form>
-    </ul>
+             <input name="submit" type="submit"> 
+            </form> 
     </header>
 </html>
