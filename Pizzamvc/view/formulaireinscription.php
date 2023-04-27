@@ -1,8 +1,4 @@
-<?php 
-require 'header.php';
-var_dump($_SERVER);
-?>
-<form class="inscription" action="formulaireinscription.php" method="POST">
+<form class="inscription" action="" method="POST">
     <label for="nom">Nom</label>
         <input  name="nom" type="text"><br>
     <label for="prenom">Prenom</label>

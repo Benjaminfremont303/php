@@ -1,90 +1,222 @@
-<?php 
-require '../model/bdd.php';
+<?php
+// On récupère l'objet "base de données"
+require_once "db.php";
+require_once "commandes.php";
 
-class personnes extends BDD{
-    
-    private string $nom_personnes;
-    private string $prenom;
-    private string $adresse;
-    private string $email;
-    private string $fidelite;
-    private string $mot_de_passe;
+// Par convention, on met la première lettre d'une classe en majuscule
+class Personnes extends DB
+{
+    /*
+        Les attributs sont en "protected" car la classe risque d'être réutilisée par une autre
+     */
+    protected string $nom;
+    protected string $prenom;
+    protected string $adresse;
+    protected string $email;
+    protected string $pass;
+    protected int $fidelite;
 
-    public function setAll($n = '', $p = '', $a = '', $e = '', $f = '', $m = ''){  
-        
-        $this->nom_personnes = $n;
-        $this->prenom = $p;
-        $this->adresse = $a;
-        $this->email = $e;
-        $this->fidelite = $f;
-        $this->mot_de_passe = $m;
-    } 
-    public function __construct()
+    /*  On définit une constructeur qui peut affecter tous les attributs en une seule fois
+        Remarque : dans la mesure où toute table a un id principal,  $id est défini dans BDD
+        Des valeurs "par défaut" sont affectées aux paramètres pour que PDO puisse appeller le 
+        constructeur sans aucun paramètre puis affecter des valeurs en fonction de la base de données
+        La valeur de fidélité est -1 car c'est la valeur avant l'attribution d'une carte de fidélité
+        La valeur de id est -1 afin que cet id ne soit pas présent dans la base
+    */
+    public function __construct(string $nom = "", string $prenom = "", string $adresse = "", string $email = "", string $pass = "")
     {
         parent::__construct();
+        $this->id = -1;
+        $this->fidelite = -1;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->adresse = $adresse;
+        $this->email = $email;
+        $this->pass = $pass;
+    }
+
+    /*  Cette fonction  statique est en fait un "faux" constructeur
+        Elle permet de construire un objet Personne depuis la base de données
+        Si la personne idezntifiée par l'id passé en paramètren'existe pas 
+        dans la base de données, c'est un objet vide qui sera alors retourné 
+    */
+    public static function getById(int $id)
+    {
+        // On créé une personne "vide"
+        $personnes = new Personnes();
+
+
+        // On créé une requête
+        $requete = $personnes->prepare("SELECT * FROM personnes where id=:id");
+
+        // On ajoute le paramètre "id"
+        $requete->bindParam(":id", $id);
+
+        // On exécute la requête
+        $requete->execute();
+
+        // On récupère l'ensemble des résultats
+        $requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Personnes');
+        $resultat = $requete->fetch();
+
+        // Si il y a un résultats, on retourne ce résultat
+        if ($resultat) {
+            return $resultat;
+        } else {
+            $personnes->setNom("L'id $id n'existe pas ");
+            return $personnes;
+        }
+    }
+
+    public static function getByEmail(string $email, string $pass)
+    {
+        $personnes = new Personnes();
+        $requete = $personnes->prepare("SELECT * FROM personnes where email=:email");
+        $requete->bindParam(":email", $email);
+        $requete->execute();
+        // On récupère l'ensemble des résultats
+        $requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Personnes');
+        $resultat = $requete->fetch();
+        // Si il y a un résultats, on retourne ce résultat
+        if ($resultat) {
+            // On contrôle le mot de passe
+            $verif = password_verify($pass, $resultat->pass);
+            if ($verif) {
+                $_SESSION['nom_personnes'] = $resultat->nom;
+                $_SESSION['prenom_personnes'] = $resultat->prenom;
+                $_SESSION['email'] = $resultat->email;
+                return $resultat;
+            }
+            else {
+                $personnes->setNom("L'email: $email ou le mot de passe érroné ");
+                return $personnes;
+            }
+        } else {
+            $personnes->setNom("L'email: $email ou le mot de passe érroné ");
+            return $personnes;
+        }
     }
 
 
-    public static function getById(int $id): personnes {
-
-        $personnes = new personnes();
-        $req = $personnes->prepare("SELECT *  FROM personnes WHERE id_personnes = :id");
-        $req->bindParam(":id", $id, PDO::PARAM_INT);
-        $req->execute();
-        $objet = $req->fetchAll(PDO::FETCH_CLASS, "personnes");     
-        if(sizeof($objet)>0) {
-            return $objet[0]; 
-        }
-        else {
-            return new personnes();
-        }
+    /*  On définit l'ensemble des "set" pour toutes les colonnes pour lequelles c'est utile
+        Le password mémorisé ici n'est pas celui qui se trouvera en base de données
+        il est seulement temporaire pour pouvoir créer les nouveaux enregistrements.
+        L'id ne sera jamais "forcé", il sera récupérable via le get, mais aucun "set" n'est utile.
+    */
+    public function setNom(string $nom)
+    {
+        $this->nom = $nom;
     }
-    public static function getByEmail(string $mail, string $mdp){
-        $personnes = new personnes();
-        $req = $personnes->prepare("SELECT * FROM personnes WHERE email = :email");
-        $req->bindParam(":email", $mail, PDO::PARAM_STR);
-        $req->execute();
-        $objet2 = $req->fetchAll(PDO::FETCH_CLASS, "personnes");
-
-        if(sizeof($objet2)>0 && password_verify($mdp,$objet2[0]->mot_de_passe)){
-            $_SESSION['Id_personnes'] = $objet2[0]->Id_personnes;
-            $_SESSION['nom_personnes'] = $objet2[0]->nom_personnes;
-            $_SESSION['prenom'] = $objet2[0]->prenom;
-            return $objet2;      
-        }
-        else{
-            return false;
-        }
+    public function setPrenom(string $prenom)
+    {
+        $this->prenom = $prenom;
+    }
+    public function setAdresse(string $adresse)
+    {
+        $this->adresse = $adresse;
+    }
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+    }
+    public function setPass(string $pass)
+    {
+        $this->pass = $pass;
+    }
+    public function setFidelite(int $fidelite)
+    {
+        $this->fidelite = $fidelite;
     }
 
+    /*  On définit l'ensemble des "get" pour toutes les colonnes pour lequelles c'est utile
+        Le mot de passe étant, en base de données, hashé, il est inutile de le mémoriser
+        dans l'objet car sa valeur hashée va changer systématiquement.
+        C'est uniquement lors de la connexion que sa valeur sera demandée afin de permettre
+        le contrôle de données
+        Contrairement au "set", il peut être utile de récupérer l'id, par exemple pour identifier 
+        la personne dans un formulaire
+    */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    public function getFidelite()
+    {
+        return $this->fidelite;
+    }
+    public function getId()
+    {
+        return $this->fidelite;
+    }
 
-    public function save(){
-        $req = $this->prepare("SELECT *  FROM personnes WHERE email = :email");
-        $req->bindParam(":email", $this->email);
-        $req->execute();
-        $existe = $req->fetchAll(PDO::FETCH_CLASS, "personnes");
+    public function save()
+    {
+        // L'id et l'email doivent être uniques, donc un verifie s'ils existent déjà
+        $requete = $this->prepare("SELECT id FROM personnes WHERE email=:email or id=:id");
+        $requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Personnes');
 
-        if(sizeof($existe) > 0){ // sizeof($existe) == sizeof(existe) > 0
-            $resultM = $this->prepare("UPDATE personnes set nom_personnes =:n, prenom=:p, adresse=:a, fidelite=:f, mot_de_passe=:m WHERE email = :e");
+        $requete->bindParam("email", $this->email, PDO::PARAM_STR);
+        $requete->bindParam("id", $this->id, PDO::PARAM_INT);
+        $requete->execute();
+
+        // On exécute la requête pour savoir si la personne existe déjà dans la base
+        $resultat = $requete->fetch();
+        if ($resultat) {
+            /*  On fait un update en fonction de l'id récupéré
+                Ni l'adresse email ni l'id ne doivent pas être modifiées ici
+                Une fonction spécifique sera écrite pour modifier l'email
+            */
+            $this->id = $resultat->id;
+            echo "id = $this->id";
+            $query = $this->prepare("UPDATE personnes set nom=:nom, prenom=:prenom, adresse=:adresse, fidelite=:fidelite where id=:id");
+            $query->bindParam(":id", $resultat->id);
+        } else {
+            // On hashe le pass et on l'insère
+            $passH = password_hash($this->pass, PASSWORD_DEFAULT);
+            $query = $this->prepare("INSERT INTO personnes(nom, prenom, adresse, email, pass, fidelite) VALUES (:nom, :prenom, :adresse, :email, :pass, :fidelite)");
+            $query->bindParam("pass", $passH, PDO::PARAM_STR);
+            $query->bindParam("email", $this->email, PDO::PARAM_STR);
         }
-        else{
-            $resultM = $this->prepare("INSERT INTO personnes(nom_personnes, prenom, adresse, email, fidelite, mot_de_passe) VALUES(:n, :p, :a, :e, :f, :m)");
- 
-        }   
-        $resultM->bindParam(":n", $this->nom_personnes);
-        $resultM->bindParam(":p", $this->prenom);
-        $resultM->bindParam(":a", $this->adresse);
-        $resultM->bindParam(":e", $this->email);
-        $resultM->bindParam(":f", $this->fidelite);
-        $resultM->bindParam(":m", $this->mot_de_passe);
-        $resultM->execute();
+
+        // Ces paramètres sont identiques pour l'insertion ou la modification
+        $query->bindParam("nom", $this->nom, PDO::PARAM_STR);
+        $query->bindParam("prenom", $this->prenom, PDO::PARAM_STR);
+        $query->bindParam("adresse", $this->adresse, PDO::PARAM_STR);
+        $query->bindParam("fidelite", $this->fidelite, PDO::PARAM_STR);
+        $query->execute();
+    }
+
+    function getCommandes(int $nombre = -1, int $debut = -1)
+    {
+        $strRequete = "select commandes.* from commandes
+        inner join personnes_commandes on id_commandes = commandes.id
+        where id_personnes=:id ORDER BY date DESC";
+        if ($nombre > 0) {
+            $strRequete .= "limit $nombre";
+            if ($debut > 0) {
+                $strRequete .= ", $debut";
+            }
+        }
+        $requete = $this->prepare($strRequete);
+        $requete->bindParam("id", $this->id, PDO::PARAM_INT);
+        $requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Commandes');
+        $requete->execute();
+        $result = $requete->fetchAll();
+        return $result;
     }
 }
-// $variable = new personnes();
-// $variable->setAll('lechhhhhat','frdddddddddddddddddddddddddddddddj','jeoljjeoe','54454kkkkdjjjd5@mrjj','jejhjjhjoleoe','frjj');
-// $variable->save();
 
 
 
-
-// $variable->getNom();

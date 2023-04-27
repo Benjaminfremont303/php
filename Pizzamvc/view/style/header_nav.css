@@ -4,53 +4,51 @@
     text-decoration: none;
     list-style: none;
 }
-header{
-    display: flex;
-    justify-content: center;
-}
 .nav{
-    background-color:   #ccc;
+    background-color:   #c44536;
     height: 20vh;
     width: 100vw;   
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.nav li a,.nav li p{
- 
+.nav li a{
     padding: 30px;
-    background-color: aliceblue;
-    color: goldenrod;
-    font-size: 30px;
+    background-color: #772e25;
+    color: #d4a373;
+    font-size: 25px;
     position: relative;
 }
+.nav li p{
+    padding: 30px;
+    background-color: #edddd4;
+    color: rgb(157, 156, 153);
+    font-size: 25px;
+    position: relative;
+    padding: 29px;
+}
 .nav li a:hover::before,.nav li p:hover::before{
-        color: rgb(255, 255, 255);
-        transition:  0.5s;
+        color: #e9edc9;
+        transition:  0.15s;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
 }
-.nav li a::before,.nav li p::before{
+.nav li a::before{
     content: attr(elementNav);
     transition: 0.5s;
-    color: blue;
+    color: #e9edc9;
     position: absolute;
-    top:28px;
+    top:29px;
     width: 0;
     overflow: hidden;
 }
-
-.formulaireCo{
-   display: none;
- 
-}
-.formVisible{
-    display: block;  
-    overflow: hidden;
+.co{
     font-size: 20px;
 }
-.connexionInvisible{
-    display: none;
+img{
+    width: 30px;
 }
+
+

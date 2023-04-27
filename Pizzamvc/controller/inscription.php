@@ -1,5 +1,4 @@
 <?php
-require "../view/formulaireinscription.php";
 require '../model/personnes.php';
 
 if(isset($_POST['submit'])){
@@ -7,12 +6,9 @@ if(isset($_POST['submit'])){
     $prenom = filter_input(INPUT_POST,'prenom', FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
     $adresse = filter_input(INPUT_POST,'adresse'); 
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $fidelite = filter_input(INPUT_POST, 0);
     $pass = filter_input(INPUT_POST, 'pass');
-    $pass = password_hash($pass, PASSWORD_DEFAULT);
 
-    $personnes = new personnes();
-    $personnes->setAll($nom,$prenom,$adresse,$email,0,$pass);
+    $personnes = new personnes($nom,$prenom,$adresse,$email,$pass);
     $personnes->save();
 
 }
