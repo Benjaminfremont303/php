@@ -16,12 +16,20 @@ if(isset($_GET["entreeRecherche"]) && !empty(trim($_GET["valider"]))){
     $newsearch = new produits;
     $trouver = $newsearch->getSearch($searchkey); 
 
-    $nom = $trouver[0]->nom;
-    $prix = $trouver[0]->prix/100 ."euros";
-    $description = $trouver[0]->description;
-    $points = "Gagnez".  $trouver[0]->points ."points";
-}
-else{
+    if (sizeof($trouver)>0){
+
+        $nom = $trouver[0]->nom;
+        $prix = $trouver[0]->prix/100 ."euros";
+        $description = $trouver[0]->description;
+        $points = "Gagnez".  $trouver[0]->points ."points";
+    }else{
+        $nom = '';
+        $prix = '';
+        $description = '';
+        $points = '';
+        $mauvaiseR = "rien n'a été trouvé, essayez 'Anchois'";
+    }
+}else{
     $nom = '';
     $prix = '';
     $description = '';

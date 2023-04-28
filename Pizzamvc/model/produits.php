@@ -34,6 +34,22 @@ public function __construct( int $id = 0, string $type = "", string $nom = "", i
         $this->description = $description;
         $this->points = $points;
     }
+public static function getById(int $id)
+    { 
+        $init = new produits;
+        $requete = $init->prepare("SELECT * FROM produits where id=:id");
+        $requete->bindParam(":id", $id);
+        $requete->execute();
+        $requete->setFetchMode(PDO::FETCH_OBJ | PDO::FETCH_PROPS_LATE);
+        $resultat = $requete->fetch();
+
+        // Si il y a un résultats, on retourne ce résultat
+        if (empty($resultat)) {
+            $this->id = setNom("L'id $id n'existe pas ");
+        } else {        
+             return $resultat;         
+        }
+    }
 /**
  *getallproduits recupere tous les produits pour les afficher
  * @return void retourner un objet sans nom
@@ -60,53 +76,11 @@ public function getSearch(string $motEntree){
  * @param  mixed $id chercher le produit de l'id correspondant
  * @return void retourne l'id
  */
-public function getById(int $id)
+
+  public function setNom()
     {
-        // On créé une requête
-        $produits = new Produits();
-        $requete = $produits->prepare("SELECT * FROM produits where id=:id");
-        // On ajoute le paramètre "id" 
-        $requete->bindParam(":id", $id);
-
-        // On exécute la requête
-        $requete->execute();
-
-        // On récupère l'ensemble des résultats
-        $requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Produits');
-        $resultat = $requete->fetch();
-        // Si il y a un résultats, on retourne ce résultat
-        if ($resultat) {
-            return $resultat;
-        } else {
-            $personnes->setNom("L'id $id n'existe pas ");
-            return $personnes;
-        }
+        return $this->nom;
     }
-
 }
-    // public function getId()
-    // {
-    //     return $this->id;
-    // }
-    // public function getNom()
-    // {
-    //     return $this->nom;
-    // }
-    // public function getType()
-    // {
-    //     return $this->type;
-    // }
-    // public function getPrix()
-    // {
-    //     return $this->prix;
-    // }
-    // public function getDescription()
-    // {
-    //     return $this->description;
-    // }
-    // public function getPoints()
-    // {
-    //     return $this->points;
-    // }
 
 

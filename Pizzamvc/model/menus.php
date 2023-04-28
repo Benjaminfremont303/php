@@ -5,62 +5,70 @@ require 'db.php';
      * gerer les menus
      */
     class menus extends DB{
-    private $nom_menus;
-    private $image_menus;
-    private $prix_menus;
-    private $description_menus;
-    private $best_seller;
-    private $points_menus;
+    protected $id;      
+    protected $nom;
+    protected $image;
+    protected $prix;
+    protected $description;
+    protected $best_seller;
+    protected $points;
     
-    /**
-     * __construct
-     *
-     * @param  mixed $nom le nom du menus
-     * @param  mixed $image le lien de l'image
-     * @param  mixed $prix le prix du menus
-     * @param  mixed $description la description du menu
-     * @param  mixed $best la meilleure vente
-     * @param  mixed $points les de fidelités apportés
-     * @return void surcharge du construct pour le bypass
-     */
-    public function __construct(string $nom = "", string $image = "", string $prix = "", string $description = '',string $best = '', int $points = 0)
+public function __construct(int $id = 0, string $nom = "", string $image = "", string $prix = "", string $description = '',string $best = '', int $point = 0)
     {
         parent::__construct();
-        $this->nom_menus = $nom;
-        $this->image_menus = $image;
-        $this->prix_menus = $prix;
-        $this->description_menus = $description;
+        $this->id= $id;
+        $this->nom = $nom;
+        $this->image = $image;
+        $this->prix = $prix;
+        $this->description = $description;
         $this->best_seller = $best;
-        $this->points_menus = $points;
+        $this->points = $point; 
     }
-public static function getById(int $id){
-        $menus = new menus;
-        $req = $menus->prepare("SELECT * FROM menus Where id = :id");
-        $req->bindParam(":id",$id);
-        $req->execute();
-        $lesMenus = $req->fetchAll(PDO::FETCH_CLASS, "menus");
-        if(sizeof($lesMenus) >0 ){
-            return $lesMenus[0];
-        }else{
-            return new menus(); // ou null
+/**
+ * getById
+ *
+ * @param  mixed $id entrez pour trouver l'objet
+ * @return void retourne l'objet
+ */
+public function getById(int $id)
+    {
+        $requete = $this->prepare("SELECT * FROM menus where id=:id");
+        $requete->bindParam(":id", $id);
+        $requete->execute();
+        $requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'menus');
+        $resultat = $requete->fetch();
+
+        // Si il y a un résultats, on retourne ce résultat
+        if ($resultat) {
+            return $resultat;
+        } else {
+            $personnes->setNom("L'id $id n'existe pas ");
         }
     }
-    public function getAllProduits(){
-
-        $produit = new produits();
-        $requete = $produit->prepare("select * from produits");
+/**
+ * getAllMenus
+ *
+ * @return void afficher la table menus
+ */
+public function getAllMenus(){
+        $requete = $this->prepare("select * from menus");
         $requete->execute();
-        $resultat = $requete->fetchall(PDO::FETCH_OBJ);
+        $requete->setFetchMode(PDO::FETCH_OBJ | PDO::FETCH_PROPS_LATE);
+        $resultat = $requete->fetchall();
         return $resultat;
     }
-    public function getSearch(string $motEntree){
-        
-            $recherche = new produits;
-            $req = $recherche->prepare("select * from produits where nom like '%$motEntree%'");
-            $req->execute();
-            $resultat = $req->fetchall(PDO::FETCH_OBJ);
-            return $resultat;
-    }
+/**
+ * getSearch
+ *
+ * @param  mixed $motEntree mot entré par l'utilisateur
+ * @return void la recherche est retournée
+ */
+public function getSearch(string $motEntree){    
+        $req = $this->prepare("select * from menus where nom like '%$motEntree%'");
+        $req->execute();
+        $resultat = $req->fetchall(PDO::FETCH_OBJ);
+        return $resultat;
+}
     function save(){
         $req = $this->prepare("SELECT * FROM menus where nom_menus =:name");
         $req->bindParam(":name",$this->nom_menus);

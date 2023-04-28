@@ -1,7 +1,6 @@
 <?php 
 $url = filter_input(INPUT_GET, "url");
 session_start();
-
 switch ($url){
     case"":
         require "../view/index.php";
@@ -47,6 +46,12 @@ switch ($url){
         require "menus.php";
         require '../view/header.php';
         require "../view/menus.php";
+        break;
+    case "panier.php":
+        require "produits.php";
+        require "panier.php";
+        require '../view/header.php';
+        require "../view/panier.php";
         break;     
     default:
         require "../view/404.html";

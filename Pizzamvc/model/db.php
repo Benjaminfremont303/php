@@ -1,7 +1,7 @@
 <?php
 class DB extends PDO
 {
-    protected int $id;
+
     public function __construct()
     {
         try {
