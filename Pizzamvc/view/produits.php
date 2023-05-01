@@ -32,7 +32,27 @@
         <p>Gagnez <?=$points?> points </p>
         <?php endforeach ?>
     </div>
-   <?php $_SESSION['ajouter'] = $_GET['id']; ?>
+
+   <?php    
+$id = filter_input(INPUT_GET, "id"); 
+$_SESSION['id'] = $id; 
+
+if(isset($_SESSION["panier"])) {
+    $panier=$_SESSION["panier"];
+}else {
+    $panier=Array();
+}
+$produit = produits::getById($id);  
+
+$quantite = 1;
+$panier[$id] = $quantite;
+
+$_SESSION['panier'] = $panier;
+/*      $panier[$id] = $quantite;
+*/    var_dump($panier);
+
+
+   ?>
 
 <h2>Bienvunue regardez nos <?=$type;?>s extraordinaire</h2>
 

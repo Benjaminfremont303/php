@@ -35,6 +35,9 @@ if(isset($_GET["entreeRecherche"]) && !empty(trim($_GET["valider"]))){
     $description = '';
     $points = '';
 }
+
+
+
     ?>
 
 

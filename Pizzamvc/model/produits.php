@@ -40,7 +40,7 @@ public static function getById(int $id)
         $requete = $init->prepare("SELECT * FROM produits where id=:id");
         $requete->bindParam(":id", $id);
         $requete->execute();
-        $requete->setFetchMode(PDO::FETCH_OBJ | PDO::FETCH_PROPS_LATE);
+        $requete->setFetchMode(PDO::FETCH_ASSOC | PDO::FETCH_PROPS_LATE);
         $resultat = $requete->fetch();
 
         // Si il y a un résultats, on retourne ce résultat
@@ -50,6 +50,15 @@ public static function getById(int $id)
              return $resultat;         
         }
     }
+
+public function add($produit_id){
+    $quantite = 1;
+
+    $panier = [$produit_id => $quantite];
+    $panier[$produit_id] = 1; 
+    var_dump($panier);
+    return $panier;
+}
 /**
  *getallproduits recupere tous les produits pour les afficher
  * @return void retourner un objet sans nom

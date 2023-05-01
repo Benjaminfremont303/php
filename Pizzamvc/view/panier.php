@@ -7,7 +7,7 @@
         <th>Action</th>
     </tr> -->
     <h3>Votre panier: </h3>
-    <?php echo isset($vide)? $vide: $vide='';?>
+    <?php echo isset($panierVide)? $panierVide: $panierVide='';?>
         <h3><?= $nom?></h3>
         <p><?= $prix?> </p>
         <img src="" alt="">
