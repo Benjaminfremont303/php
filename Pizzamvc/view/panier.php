@@ -1,5 +1,8 @@
 <?php 
- foreach($_SESSION['newPanier'] as $panier):    
+unset($_SESSION['panier'][3]);
+var_dump($_SESSION['panier']);
+$panier = $_SESSION['newPanier'];
+
     $id = $panier->id;
     $type = $panier->type;
     $nom  = $panier->nom;
@@ -15,5 +18,5 @@
         <p><?=$description?></p>
         <p><?=$points?></p>
         <a href="panier.php?del=<?=$id?>">supprimer du panier</a>
-<?php endforeach ?>     
+
 
