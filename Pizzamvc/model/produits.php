@@ -34,6 +34,12 @@ public function __construct( int $id = 0, string $type = "", string $nom = "", i
         $this->description = $description;
         $this->points = $points;
     }
+/**
+ * getById
+ *
+ * @param  mixed $id chercher le produit de l'id correspondant
+ * @return void retourne l'id
+ */
 public static function getById(int $id)
     { 
         $init = new produits;
@@ -42,35 +48,30 @@ public static function getById(int $id)
         $requete->execute();
         $requete->setFetchMode(PDO::FETCH_ASSOC | PDO::FETCH_PROPS_LATE);
         $resultat = $requete->fetch();
-
         // Si il y a un résultats, on retourne ce résultat
         if (empty($resultat)) {
-            $this->id = setNom("L'id $id n'existe pas ");
+           return "L'id $id n'existe pas ";
         } else {        
              return $resultat;         
         }
     }
-
-public function add($produit_id){
-    $quantite = 1;
-
-    $panier = [$produit_id => $quantite];
-    $panier[$produit_id] = 1; 
-    var_dump($panier);
-    return $panier;
-}
 /**
  *getallproduits recupere tous les produits pour les afficher
  * @return void retourner un objet sans nom
  */
 public function getAllProduits(){
 
-    $produit = new produits();
-    $requete = $produit->prepare("select * from produits");
+    $requete = $this->prepare("select * from produits");
     $requete->execute();
     $resultat = $requete->fetchall(PDO::FETCH_OBJ);
     return $resultat;
 }
+/**
+ * getSearch
+ *
+ * @param  mixed $motEntree mot entré par l'utilisateur
+ * @return void la recherche de l'utilisateur
+ */
 public function getSearch(string $motEntree){
     
         $recherche = new produits;
@@ -79,17 +80,23 @@ public function getSearch(string $motEntree){
         $resultat = $req->fetchall(PDO::FETCH_OBJ);
         return $resultat;
 }
-/**
- * getById
- *
- * @param  mixed $id chercher le produit de l'id correspondant
- * @return void retourne l'id
- */
+public function panier(array $ids){
 
-  public function setNom()
-    {
-        return $this->nom;
-    }
+    $requete = $this->prepare('SELECT * FROM produits WHERE id IN ('.implode(',',$ids).')');
+
+
+    $requete->execute();
+    $resultat = $requete->fetchall(PDO::FETCH_OBJ);
+    var_dump($requete);
+    return $resultat;
+}
+
+
+
+/**
+ * Get getById
+ */ 
+
 }
 
 
