@@ -41,20 +41,20 @@ public function __construct( int $id = 0, string $type = "", string $nom = "", i
  * @return void retourne l'id
  */
 public static function getById(int $id)
-    { 
-        $init = new produits;
-        $requete = $init->prepare("SELECT * FROM produits where id=:id");
-        $requete->bindParam(":id", $id);
-        $requete->execute();
-        $requete->setFetchMode(PDO::FETCH_ASSOC | PDO::FETCH_PROPS_LATE);
-        $resultat = $requete->fetch();
-        // Si il y a un résultats, on retourne ce résultat
-        if (empty($resultat)) {
-           return "L'id $id n'existe pas ";
-        } else {        
-             return $resultat;         
-        }
+{ 
+    $init = new produits;
+    $requete = $init->prepare("SELECT * FROM produits where id=:id");
+    $requete->bindParam(":id", $id);
+    $requete->execute();
+    $requete->setFetchMode(PDO::FETCH_ASSOC | PDO::FETCH_PROPS_LATE);
+    $resultat = $requete->fetch();
+    // Si il y a un résultats, on retourne ce résultat
+    if (empty($resultat)) {
+        return "L'id $id n'existe pas ";
+    } else {        
+            return $resultat;         
     }
+}
 /**
  *getallproduits recupere tous les produits pour les afficher
  * @return void retourner un objet sans nom
@@ -73,29 +73,52 @@ public function getAllProduits(){
  * @return void la recherche de l'utilisateur
  */
 public function getSearch(string $motEntree){
-    
-        $recherche = new produits;
-        $req = $recherche->prepare("select * from produits where nom like '%$motEntree%'");
-        $req->execute();
-        $resultat = $req->fetchall(PDO::FETCH_OBJ);
-        return $resultat;
+
+    $req = $this->prepare("select * from produits where nom like '%$motEntree%'");
+    $req->execute();
+    $resultat = $req->fetchall(PDO::FETCH_OBJ);
+    return $resultat;
 }
 public function panier(array $ids){
 
     $requete = $this->prepare('SELECT * FROM produits WHERE id IN ('.implode(',',$ids).')');
-
-
     $requete->execute();
     $resultat = $requete->fetchall(PDO::FETCH_OBJ);
-    var_dump($requete);
     return $resultat;
 }
 
+public static function addPanier(int $id){
+    if(isset($_SESSION['panier'][$id])){
+        $_SESSION['panier'][$id]++;
+    }else{
+        $_SESSION['panier'][$id] = 1;
+    }
+}
+public static function rmPanier(int $id){
+    if(isset($_SESSION['panier'][$id]) ){
+        $_SESSION['panier'][$id]--;
+    }
+    if($_SESSION['panier'][$id] <= 0){
+        unset($_SESSION['panier'][$id]);
+    }
+}
+public static function totalPanier(){
+    $total = 0;
+    $init = new produits;
+    $ids = array_keys($_SESSION['panier']);
 
-
-/**
- * Get getById
- */ 
+    if(empty($ids)){
+        $produits = array();
+    }else{
+        $produits = $init->prepare('SELECT * FROM produits WHERE id IN ('.implode(',',$ids).')');
+        $produits->execute();
+        $resultats = $produits->fetchall(PDO::FETCH_OBJ);
+    }
+    foreach ($resultats as $resultat){
+        $total = $total + $resultat->prix;
+    }
+    return $total;
+}
 
 }
 

@@ -1,14 +1,14 @@
 <?php 
-    require '../model/produits.php';
+require '../model/produits.php';
 // condition: si la classe ou la methode sont absentes afficher le message de maintenance
-    if(class_exists('produits') && method_exists('produits', "getAllproduits")){   
-         $produit = new produits();
-         $allprod = $produit->getAllproduits();
-    }
-    else{
-        echo "notre page est en cous d'améliorations, veuillez réessayer plus tard";
-        ini_set('display_errors', 'off');
-    }
+if(class_exists('produits') && method_exists('produits', "getAllproduits")){   
+        $produit = new produits();
+        $allprod = $produit->getAllproduits();
+}
+else{
+    echo "notre page est en cous d'améliorations, veuillez réessayer plus tard";
+    ini_set('display_errors', 'off');
+}
 // ici le filtre de la barre de recherche produit
 //si get existe et valider
 if(isset($_GET["entreeRecherche"]) && !empty(trim($_GET["valider"]))){
@@ -31,38 +31,33 @@ if(isset($_GET["entreeRecherche"]) && !empty(trim($_GET["valider"]))){
         $points = '';
         $mauvaiseR = "rien n'a été trouvé, essayez 'Anchois'";
     }
-    //tu renvois un obejt vide
+//tu renvois des vraiable vide pour les erreurs undefined
 }else{
     $nom = '';
     $prix = '';
     $description = '';
     $points = '';
 }
-// panier
+// panier partie produit
         //si GET id existe
-        if (isset($_GET['id'])){
+if (isset($_GET['id'])){
 
-            $_SESSION['id'] = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT); 
-            $id = $_SESSION['id'];
-            $produit = produits::getById($id); 
+    $_SESSION['id'] = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT); 
+    $id = $_SESSION['id'];
+    $produit = produits::getById($id); 
 
-        if(isset($_SESSION["panier"])) {
-                $panier=$_SESSION["panier"];  
-            }
-        else{
-                $panier=Array();
-            }   
-            $quantite = 1;
-            $panier[$id] = $quantite; 
-            $_SESSION['panier'] = $panier;
+if(isset($_SESSION["panier"])) {
+        $panier=$_SESSION["panier"];  
+    }
+else{
+        $panier=Array();
+    }   
+    
+$quantite = Produits::addPanier($id);
 
-            $ids = array_keys($_SESSION['panier']);
-            $p = new produits;
-            $newPanier = $p->panier($ids);
-            $_SESSION['newPanier'] = $newPanier;
-            var_dump($newPanier);
- 
-        }
+$panier[$id] = $quantite; 
+/* $_SESSION['panier'] = $panier; */
+}
 
 
 
