@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/header_nav.css">
     <link rel="stylesheet" href="style/formulaire.css">
+    <link rel="stylesheet" href="style/utilisateur.css">
     <title>Document</title>
     <script defer src="js/script.js"></script>
 </head>
@@ -24,7 +25,7 @@
             HTML;
         }?>
 
-        <ul class="nav">
+        <ul class="nav1">
         <?php 
                $user = 'connexion';
                if(isset($_SESSION['nom_personnes'])){

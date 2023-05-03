@@ -52,11 +52,9 @@ if(isset($_SESSION["panier"])) {
 else{
         $panier=Array();
     }   
-    
 $quantite = Produits::addPanier($id);
 
 $panier[$id] = $quantite; 
-/* $_SESSION['panier'] = $panier; */
 }
 
 

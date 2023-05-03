@@ -4,7 +4,7 @@
     text-decoration: none;
     list-style: none;
 }
-.nav{
+.nav1{
     background-color:   #c44536;
     height: 20vh;
     width: 100vw;   
@@ -12,14 +12,14 @@
     align-items: center;
     justify-content: center;
 }
-.nav li a{
+.nav1 li a{
     padding: 30px;
     background-color: #772e25;
     color: #d4a373;
     font-size: 25px;
     position: relative;
 }
-.nav li p{
+.nav1 li p{
     padding: 30px;
     background-color: #edddd4;
     color: rgb(157, 156, 153);
@@ -27,7 +27,7 @@
     position: relative;
     padding: 29px;
 }
-.nav li a:hover::before,.nav li p:hover::before{
+.nav1 li a:hover::before,.nav li p:hover::before{
         color: #e9edc9;
         transition:  0.15s;
         width: 100%;
@@ -35,7 +35,7 @@
         align-items: center;
         justify-content: center;
 }
-.nav li a::before{
+.nav1 li a::before{
     content: attr(elementNav);
     transition: 0.5s;
     color: #e9edc9;

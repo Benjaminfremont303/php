@@ -97,6 +97,8 @@ public static function addPanier(int $id){
 public static function rmPanier(int $id){
     if(isset($_SESSION['panier'][$id]) ){
         $_SESSION['panier'][$id]--;
+    }else{
+        return "Il n'y a rien pas meme le vide ici.";
     }
     if($_SESSION['panier'][$id] <= 0){
         unset($_SESSION['panier'][$id]);
@@ -104,6 +106,7 @@ public static function rmPanier(int $id){
 }
 public static function totalPanier(){
     $total = 0;
+    $resultats = 0;
     $init = new produits;
     $ids = array_keys($_SESSION['panier']);
 
@@ -114,9 +117,11 @@ public static function totalPanier(){
         $produits->execute();
         $resultats = $produits->fetchall(PDO::FETCH_OBJ);
     }
+    if($resultats > 0){
     foreach ($resultats as $resultat){
-        $total = $total + $resultat->prix;
-    }
+        $total = $total + $resultat->prix * $_SESSION['panier'][$resultat->id];
+        }
+    } 
     return $total;
 }
 

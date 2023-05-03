@@ -21,6 +21,10 @@ switch ($url){
         header("Content-type: text/js");
         require "../view/script.js"; // sous repertoire obligatoire
         break;
+    case "style/utilisateur.css":
+        header("Content-type: text/css");
+        require "../view/style/utilisateur.css"; // sous repertoire obligatoire
+        break;
     case "panier.png":
         header("Content-type: image/png");
         require "../view/images/panier.png"; // sous repertoire obligatoire
@@ -43,7 +47,7 @@ switch ($url){
         require "../view/produits.php"; 
         break;
     case"menus.php":
-        require "menus.php";
+     
         require '../view/header.php';
         require "../view/menus.php";
         break;

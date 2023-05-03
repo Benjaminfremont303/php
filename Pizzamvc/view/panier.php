@@ -1,9 +1,4 @@
 <?php 
-
-var_dump($_SESSION['panier']);
-?>
-
-<?php 
 if(!empty($_SESSION['panier'])):
     foreach($newPanier as $panier):    
     $id = $panier->id;
@@ -16,7 +11,7 @@ if(!empty($_SESSION['panier'])):
     <h3>Votre panier:</h3>
 <?php echo isset($panierVide)? $panierVide: $panierVide='';?>
     <h3><?=$nom?></h3>
-    <p><?= $prix?> </p>
+    <p><?= $prix/100?> </p>
     <img src="" alt="">
     <p><?=$description?></p>
     <p><?=$points?></p>
@@ -28,7 +23,7 @@ if(!empty($_SESSION['panier'])):
 <?php else:?>
     <h2>Votre panier est plein de vide</h2>
 <?php endif ?>
-<?= number_format(produits::totalPanier()) ?>
+<p>La totalité du total est: <?= number_format(produits::totalPanier()/100) ?> euros</p>
 
 
 
