@@ -4,6 +4,10 @@
     text-decoration: none;
     list-style: none;
 }
+body{
+    background: linear-gradient(#ff7b0070,#ff34017e ) border-box;
+    height: 100vh;
+}
 .nav1{
     background-color:   #c44536;
     height: 20vh;

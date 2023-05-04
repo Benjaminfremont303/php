@@ -18,7 +18,7 @@ switch ($url){
         require "../view/style/404.css";
         break;
     case "js/script.js":
-        header("Content-type: text/js");
+        header("Content-type: text/javascript");
         require "../view/script.js"; // sous repertoire obligatoire
         break;
     case "style/utilisateur.css":
@@ -35,8 +35,11 @@ switch ($url){
         require "../view/formulaireinscription.php";
         break;
     case "connexion.php":
-        require "connexion.php";
         require "../view/connexion.php";
+        break;
+    case "formulaireconnexion.php":
+        require "formulaireconnexion.php";
+        require "../view/formulaireconnexion.php";
         break;
     case "admin.php":
     
@@ -47,11 +50,17 @@ switch ($url){
         require "../view/produits.php"; 
         break;
     case"menus.php":
-     
         require '../view/header.php';
         require "../view/menus.php";
         break;
+    case"recappanier.php":
+        require 'produits.php';
+        require 'panier.php';
+        require '../view/header.php';
+        require "../view/recappanier.php";
+        break;
     case "panier.php":
+        require 'commande.php';
         require "produits.php";
         require "panier.php";
         require '../view/header.php';

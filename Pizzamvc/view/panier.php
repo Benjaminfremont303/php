@@ -24,6 +24,6 @@ if(!empty($_SESSION['panier'])):
     <h2>Votre panier est plein de vide</h2>
 <?php endif ?>
 <p>La totalité du total est: <?= number_format(produits::totalPanier()/100) ?> euros</p>
-
+<a href="recappanier.php">validez votre panier</a>
 
 

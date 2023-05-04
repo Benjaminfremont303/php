@@ -37,6 +37,6 @@
             <?= form('/commentaire.php','Commentaire')?>
             <?= form('/panier.php','Panier')?>
             <?= form('/formulaireinscription.php','Inscription', 'co')?><hr> 
-            <?= form('/connexion.php',$user,'co');?>
+            <?= form('/formulaireconnexion.php',$user,'co');?>
             
     </header>

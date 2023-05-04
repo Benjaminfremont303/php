@@ -108,6 +108,7 @@ public static function totalPanier(){
     $total = 0;
     $resultats = 0;
     $init = new produits;
+    if (!empty($_SESSION['panier'])){
     $ids = array_keys($_SESSION['panier']);
 
     if(empty($ids)){
@@ -123,6 +124,7 @@ public static function totalPanier(){
         }
     } 
     return $total;
+    }
 }
 
 }
