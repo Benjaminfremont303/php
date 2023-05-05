@@ -1,7 +1,7 @@
 <?php
 // On récupère l'objet "base de données"
 require_once "db.php";
-
+require_once '../model/liencommandes.php';
 
 // Par convention, on met la première lettre d'une classe en majuscule
 class Commandes extends DB
@@ -10,6 +10,14 @@ class Commandes extends DB
     protected string $paiement;
     protected bool $valide;
     protected string $date;
+public function __construct(string $paiement ='', int $valide = 0, string $date = '') 
+{
+    parent::__construct();
+    $this->id = -1;
+    $this->paiement = $paiement;
+    $this->valide = $valide;
+    $this->date = $date;
+}
 
 public function getProduits()
 {
@@ -23,12 +31,43 @@ public function getProduits()
     return $result;
 }
 
-function addcommande(string $paiement, int $valide, DateTime $date){
-    $requete = $this->prepare("INSERT INTO commandes(paiement, valide, date) VALUES(:p,:v,:date)");
+
+public function save(){
+    $req = $this->prepare("SELECT *  FROM commandes WHERE id = :id");
+    $req->bindParam(":id", $this->id);
+    $req->execute();
+    $existe = $req->fetchAll(PDO::FETCH_OBJ);
+
+    if(sizeof($existe) > 0){ // sizeof($existe) == sizeof(existe) > 0
+        $requete = $this->prepare("UPDATE commandes set paiement =:p, valide=:v, date=:a WHERE id = :id");
+    }
+    else{
+        $requete = $this->prepare("INSERT INTO commandes(paiement, valide, date) VALUES(:p,:v,:d)");
+    }   
     $requete->bindParam(":p", $this->paiement);
     $requete->bindParam(":v", $this->valide);
     $requete->bindParam(":d", $this->date);
     $requete->execute();
+    $resultat=$this->lastInsertId();
+
+    $lien = new liencommandes();
+    $lien->addCommande($resultat);
 }
 
+
+//or die(print_r($this->errorInfo()));
+
+
+/**
+ * Set the value of id
+ *
+ * @return  self
+ */ 
+public function setId($id)
+{
+$this->id = $id;
+
+return $this;
 }
+}
+

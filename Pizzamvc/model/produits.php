@@ -81,8 +81,13 @@ public function getSearch(string $motEntree){
 }
 public function panier(array $ids){
 
-    $requete = $this->prepare('SELECT * FROM produits WHERE id IN ('.implode(',',$ids).')');
-    $requete->execute();
+    $tab = str_repeat("?,", count($ids));
+    $tab = substr($tab,0,strlen($tab)-1);
+/*     foreach ($ids as $key => $value) {
+        $keys[] = "?";
+    } */
+    $requete = $this->prepare("SELECT * FROM produits WHERE id IN ($tab)");
+    $requete->execute($ids);
     $resultat = $requete->fetchall(PDO::FETCH_OBJ);
     return $resultat;
 }

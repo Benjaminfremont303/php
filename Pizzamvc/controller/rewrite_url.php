@@ -54,13 +54,13 @@ switch ($url){
         require "../view/menus.php";
         break;
     case"recappanier.php":
+      require 'commandes.php'; 
         require 'produits.php';
         require 'panier.php';
         require '../view/header.php';
         require "../view/recappanier.php";
         break;
     case "panier.php":
-        require 'commande.php';
         require "produits.php";
         require "panier.php";
         require '../view/header.php';

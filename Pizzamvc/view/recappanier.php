@@ -54,5 +54,3 @@
     <div>
         <h3>votre total en euros : <?= number_format(produits::totalPanier()/100) ?></h3>
     </div>
-
-<?= var_dump($_POST) ?>
