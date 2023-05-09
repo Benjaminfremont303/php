@@ -10,6 +10,4 @@ if(isset($_POST['Vpanier'])){
     $commande = new commandes($paiement, $valide, $date);
     $commande->save();
     
-
-
 }

@@ -32,7 +32,7 @@
 <?php endif ?>
 </section>
     <div>
-<form method="POST" action="recappanier.php?nc=">
+<form method="POST" action=""><!-- http://pizzamvc/ -->
     <fieldset>
         <legend>Moyen de paiement:</legend>
 

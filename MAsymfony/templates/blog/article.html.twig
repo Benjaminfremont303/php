@@ -1,0 +1,22 @@
+{# templates/blog/index.html.twig #}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog</title>
+</head>
+<body>
+    <h1>Bienvenue sur les articles tendances</h1>
+ {{resultat}}
+<article>
+
+
+         {% for truc in thetruc %}
+            <p>{{ truc }}</p>
+            {% endfor %}
+        
+</article>
+</body>
+</html>

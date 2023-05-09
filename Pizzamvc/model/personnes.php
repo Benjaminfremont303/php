@@ -1,7 +1,6 @@
 <?php
 // On récupère l'objet "base de données"
 require_once "db.php";
-require_once "commandes.php";
 
 // Par convention, on met la première lettre d'une classe en majuscule
 class Personnes extends DB
@@ -68,34 +67,45 @@ class Personnes extends DB
         }
     }
 
-    public static function getByEmail(string $email, string $pass)
-    {
-        $personnes = new Personnes();
-        $requete = $personnes->prepare("SELECT * FROM personnes where email=:email");
-        $requete->bindParam(":email", $email);
-        $requete->execute();
-        // On récupère l'ensemble des résultats
-        $requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Personnes');
-        $resultat = $requete->fetch();
-        // Si il y a un résultats, on retourne ce résultat
-        if ($resultat) {
-            // On contrôle le mot de passe
-            $verif = password_verify($pass, $resultat->pass);
-            if ($verif) {
-                $_SESSION['nom_personnes'] = $resultat->nom;
-                $_SESSION['prenom_personnes'] = $resultat->prenom;
-                $_SESSION['email'] = $resultat->email;
-                return $resultat;
-            }
-            else {
-                $personnes->setNom("L'email: $email ou le mot de passe érroné ");
-                return $personnes;
-            }
-        } else {
+public static function getByEmail(string $email, string $pass)
+{
+    $personnes = new Personnes();
+    $requete = $personnes->prepare("SELECT * FROM personnes where email=:email");
+    $requete->bindParam(":email", $email);
+    $requete->execute();
+    // On récupère l'ensemble des résultats
+    $requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Personnes');
+    $resultat = $requete->fetch();
+    // Si il y a un résultats, on retourne ce résultat
+    if ($resultat) {
+        // On contrôle le mot de passe
+        $verif = password_verify($pass, $resultat->pass);
+        if ($verif) {
+            $_SESSION['nom_personnes'] = $resultat->nom;
+            $_SESSION['prenom_personnes'] = $resultat->prenom;
+            $_SESSION['email'] = $resultat->email;
+            return $resultat;
+        }
+        else {
             $personnes->setNom("L'email: $email ou le mot de passe érroné ");
             return $personnes;
         }
+    } else {
+        $personnes->setNom("L'email: $email ou le mot de passe érroné ");
+        return $personnes;
     }
+}
+
+public function getIdByEmail(string $email){
+
+    $requete = $this->prepare("SELECT id FROM personnes where email=:email");
+    $requete->bindparam(":email", $email);  
+    $requete->execute();
+    $resultat = $requete->fetch(PDO::FETCH_OBJ);
+
+    return $resultat;
+    
+}
 
 
     /*  On définit l'ensemble des "set" pour toutes les colonnes pour lequelles c'est utile
