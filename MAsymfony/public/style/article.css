@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.boitearticle{
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+}
+.article{
+    background-color: aqua;
+    height: 300px;
+    width: 300px;
+}

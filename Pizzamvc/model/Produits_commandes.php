@@ -1,7 +1,7 @@
 <?php
 require '../model/commandes.php';
 require '../model/personnes.php';
-class liencommandes extends commandes{
+class Produitscommandes extends commandes{
 
     protected int $id;
     protected int $id_produits;
@@ -45,28 +45,6 @@ if(!empty($_SESSION['panier'])){
             } 
         }
         
-
-if(!empty($_SESSION['email'])){
-    $req = $this->prepare("SELECT *  FROM commandes_produits WHERE id = :id");
-    $req->bindParam(":id", $this->id);
-    $req->execute();
-    $existeUser= $req->fetchAll(PDO::FETCH_OBJ);
-
-    $idpersonnes = new personnes;
-    $idUser = $idpersonnes->getIdByEmail($_SESSION['email']);
-
-if(!empty($existeUser)){
-               var_dump($idUser);
-            $requete = $this->prepare("UPDATE personnes_commandes set id_personnes id_commandes WHERE id = ?");
-            $param = array($id,$idc,$quantite,$this->id);
-            $requete->execute($param);
-    }else{           
-        
-            $requete = $this->prepare("INSERT INTO personnes_commandes(id_personnes, id_commandes) VALUES(?,?)");     
-            $param2 = array($idUser,$idc);
-            $requete->execute($param2);
-    }
-}
         unset($_SESSION['panier']);
     }
 }

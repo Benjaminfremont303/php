@@ -1,7 +1,7 @@
 <?php
 // On récupère l'objet "base de données"
 require_once "db.php";
-require_once '../model/liencommandes.php';
+require_once '../model/Produits_commandes.php';
 
 // Par convention, on met la première lettre d'une classe en majuscule
 class Commandes extends DB
@@ -50,8 +50,12 @@ public function save(){
     $requete->execute();
     $resultat=$this->lastInsertId();
 
-    $lien = new liencommandes();
-    $lien->addCommande($resultat);
+    $lienProduits = new produitscommandes();
+    $lienProduits->addCommande($resultat);
+
+    $lienPersonnes = new personnescommandes();
+    $lienPersonnes->addCommande($resultat);
+
 }
 
 
