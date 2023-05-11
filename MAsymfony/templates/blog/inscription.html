@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}inscription{% endblock %}
+
+{% block body %}
+<form class="inscription" action="" method="POST">
+    <label for="pseudo">Pseudo</label>
+        <input  name="pseudo" type="text"><br>
+    <label for="nom">Nom</label>
+        <input  name="nom" type="text"><br>
+    <label for="prenom">Prenom</label>
+        <input name="prenom" type="text"><br>
+    <label for="adresse">adresse</label>
+        <input name="adresse" type="text"><br>
+    <label for="email">email</label>
+         <input name="email"type="email"> <br>
+    <label for="email">email confirmation</label>
+         <input name="email2"type="email"> <br>
+    <label for="pass">mot de passe</label>
+        <input name="pass" type="PASSWORD"> <br>
+    <label for="mdp2">mot de passe confirmation</label>
+        <input name="pass2" type="PASSWORD">  <br>
+    <input name="submit" value="envoyer" type="submit">  
+</form>
+{% endblock %} 

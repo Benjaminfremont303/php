@@ -6,8 +6,10 @@ use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Users
 {
     #[ORM\Id]
@@ -29,6 +31,9 @@ class Users
 
     #[ORM\OneToMany(mappedBy: 'Users', targetEntity: Articles::class)]
     private Collection $articles;
+
+    #[ORM\Column(length: 255)]
+    private ?string $mdp = null;
 
     public function __construct()
     {
@@ -114,6 +119,18 @@ class Users
                 $article->setUsers(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMdp(): ?string
+    {
+        return $this->mdp;
+    }
+
+    public function setMdp(string $mdp): self
+    {
+        $this->mdp = $mdp;
 
         return $this;
     }

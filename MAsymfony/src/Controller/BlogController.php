@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlogController extends AbstractController{
-    #[Route('/blog', name: 'app_blog')]
+    #[Route('blog/', name: 'app_blog')]
     public function index(): Response
     {
         return $this->render('blog/index.html', [
@@ -32,6 +32,13 @@ class BlogController extends AbstractController{
     public function monblog(): Response
     {
         return $this->render('blog/monblog.html', [
+           
+        ]);
+    }
+    #[Route('/blog/creer', name: 'monblog')]
+    public function creer(): Response
+    {
+        return $this->render('blog/creer.html', [
            
         ]);
     }
