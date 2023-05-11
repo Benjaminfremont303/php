@@ -1,6 +1,4 @@
 <?php
-require '../model/commandes.php';
-require '../model/personnes.php';
 class personnescommandes extends commandes{
 
     protected int $id;
@@ -27,15 +25,14 @@ if(!empty($_SESSION['email'])){
     $idUser = $idpersonnes->getIdByEmail($_SESSION['email']);
 
 if(!empty($existeUser)){
-               var_dump($idUser);
             $requete = $this->prepare("UPDATE personnes_commandes set id_personnes id_commandes WHERE id = ?");
             $param = array($idUser,$idc,$this->id);
             $requete->execute($param);
     }else{           
-        
             $requete = $this->prepare("INSERT INTO personnes_commandes(id_personnes, id_commandes) VALUES(?,?)");     
-            $param2 = array($idUser,$idc);
+            $param2 = array($idUser->id,$idc);
             $requete->execute($param2);
+            unset($_SESSION['panier']);
             }
         }
     }

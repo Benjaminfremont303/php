@@ -1,7 +1,8 @@
 <?php
 // On récupère l'objet "base de données"
 require_once "db.php";
-require_once '../model/Produits_commandes.php';
+require_once '../model/Produits_Commandes.php';
+require_once '../model/Personnes_Commandes.php';
 
 // Par convention, on met la première lettre d'une classe en majuscule
 class Commandes extends DB

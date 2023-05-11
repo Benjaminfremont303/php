@@ -1,5 +1,6 @@
 <?php 
-if(!empty($_SESSION['panier'])):
+if(!empty($_SESSION['email'])){
+    if(!empty($_SESSION['panier'])):
     foreach($newPanier as $panier):    
     $id = $panier->id;
     $type = $panier->type;
@@ -22,7 +23,12 @@ if(!empty($_SESSION['panier'])):
     <a href="recappanier.php">validez votre panier</a>
     <p>La totalité du total est: <?= number_format(produits::totalPanier()/100) ?> euros</p>
 <?php endforeach ?>
-<?php else:?>
+<?php endif ?>
+<?php
+}else{
+    echo "merci de vous connectez svp...";
+}
+if(empty($_SESSION['panier'])): ?>
     <h2>Votre panier est plein de vide</h2>
 <?php endif ?>
 

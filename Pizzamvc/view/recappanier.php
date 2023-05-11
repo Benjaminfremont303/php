@@ -32,7 +32,7 @@
 <?php endif ?>
 </section>
     <div>
-<form method="POST" action=""><!-- http://pizzamvc/ -->
+<form method="POST" action="http://pizzamvc/produit.php"><!-- http://pizzamvc/ -->
     <fieldset>
         <legend>Moyen de paiement:</legend>
 
@@ -54,3 +54,4 @@
     <div>
         <h3>votre total en euros : <?= number_format(produits::totalPanier()/100) ?></h3>
     </div>
+   

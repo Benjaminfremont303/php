@@ -33,8 +33,9 @@
         <?php endforeach ?>
     </div>
 
-
-
+<?php if(!empty($_SESSION['panier']) && empty($_SESSION['email'])): ?>
+<h2>Merci de vous connectez pour ajouter un produit au panier</h2>
+<?php endif ?>
 
 <h2>Bienvunue regardez nos <?=$type;?>s extraordinaire</h2>
 

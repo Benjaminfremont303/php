@@ -41,6 +41,7 @@ if(!empty($_SESSION['panier'])){
             $requete = $this->prepare("INSERT INTO commandes_produits(id_produits, id_commandes, quantite) VALUES(?,?,?)");     
             $param = array($id,$idc,$quantite);
             $requete->execute($param);
+            unset($_SESSION['panier']);
                 }
             } 
         }
