@@ -17,3 +17,4 @@ class LuckyController extends AbstractController
         ]);
     }
 }
+/* php bin/console doctrine:mapping:import --force --path src blog */

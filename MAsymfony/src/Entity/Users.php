@@ -3,51 +3,65 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
-class Users implements UserInterface, PasswordAuthenticatedUserInterface
+class Users
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180, unique: true)]
+    #[ORM\Column(length: 100)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column]
-    private array $roles = [];
-
-    /**
-     * @var string The hashed password
-     */
-    #[ORM\Column]
-    private ?string $password = null;
-
     #[ORM\Column(length: 255)]
-    private ?string $lastname = null;
+    private ?string $pseudo = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $fisrtname = null;
+    #[ORM\OneToMany(mappedBy: 'Users', targetEntity: Articles::class)]
+    private Collection $articles;
 
-    #[ORM\Column(length: 255)]
-    private ?string $adresse = null;
-
-    #[ORM\Column(length: 5)]
-    private ?string $zipcode = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $city = null;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -62,127 +76,44 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
+    public function getPseudo(): ?string
     {
-        return (string) $this->email;
+        return $this->pseudo;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
+    public function setPseudo(string $pseudo): self
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
+        $this->pseudo = $pseudo;
 
         return $this;
     }
 
     /**
-     * @see PasswordAuthenticatedUserInterface
+     * @return Collection<int, Articles>
      */
-    public function getPassword(): string
+    public function getArticles(): Collection
     {
-        return $this->password;
+        return $this->articles;
     }
 
-    public function setPassword(string $password): self
+    public function addArticle(Articles $article): self
     {
-        $this->password = $password;
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->setUsers($this);
+        }
 
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
+    public function removeArticle(Articles $article): self
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    public function getFisrtname(): ?string
-    {
-        return $this->fisrtname;
-    }
-
-    public function setFisrtname(string $fisrtname): self
-    {
-        $this->fisrtname = $fisrtname;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(string $adresse): self
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    public function getZipcode(): ?string
-    {
-        return $this->zipcode;
-    }
-
-    public function setZipcode(string $zipcode): self
-    {
-        $this->zipcode = $zipcode;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
-    {
-        $this->created_at = $created_at;
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getUsers() === $this) {
+                $article->setUsers(null);
+            }
+        }
 
         return $this;
     }

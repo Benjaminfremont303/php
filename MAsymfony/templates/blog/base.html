@@ -7,17 +7,20 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}<link rel="stylesheet" href="{{ asset('/style/base.css') }}" type="text/css">{% endblock %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 
         {% block javascripts %}{% endblock %}
     </head>
     <header>
        <section class="nav">
         <ul>
-            <li><a href="">accueil</a></li>
-            <li><a href="">tendance</a></li>
-            <li><a href="">Mon blog</a></li>
-            <li><a href="">à propos</a></li>
-            <li class="trait"><a href="">contact</a></li>
+            <li><a href="blog/">Accueil</a></li>
+            <li><a href="blog/tendance">Tendance</a></li>
+            <li><a href="blog/monblog">Mon blog</a></li>
+            <li><a href="blog/connexion">Connexion</a></li>
+            <li class="trait"><a href="blog/inscription">Inscription</a></li>
         </ul>
       </section>
     </header>

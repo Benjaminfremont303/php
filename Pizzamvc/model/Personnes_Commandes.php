@@ -32,8 +32,8 @@ if(!empty($existeUser)){
             $requete = $this->prepare("INSERT INTO personnes_commandes(id_personnes, id_commandes) VALUES(?,?)");     
             $param2 = array($idUser->id,$idc);
             $requete->execute($param2);
-            unset($_SESSION['panier']);
+            
             }
-        }
+        }unset($_SESSION['panier']);
     }
 }

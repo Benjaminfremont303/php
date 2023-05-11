@@ -32,7 +32,7 @@
 <?php endif ?>
 </section>
     <div>
-<form method="POST" action="http://pizzamvc/produit.php"><!-- http://pizzamvc/ -->
+<form method="POST"><!-- http://pizzamvc/ -->
     <fieldset>
         <legend>Moyen de paiement:</legend>
 
@@ -48,10 +48,13 @@
             <input type="radio" id="Bitcoin" name="paiement" value="Bitcoin">
             <label for="louie">Bitcoin</label>
         </div>
-        <button type="submit" name="Vpanier" value="1">Validez le panier et payer</button>
+        <button class="Vpanier" type="submit" name="Vpanier" value="1">Validez le panier et payer</button>
     </fieldset>           
 </form>  
     <div>
         <h3>votre total en euros : <?= number_format(produits::totalPanier()/100) ?></h3>
     </div>
-   
+<?php   if ($_SERVER['REDIRECT_URL'] == "/recappanier.php" && empty($_SESSION['panier'])){
+     header("Location: http://pizzamvc/");
+     die();
+}
