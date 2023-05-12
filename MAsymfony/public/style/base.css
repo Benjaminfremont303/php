@@ -39,14 +39,14 @@ body{
 .nav ul li a{
     background-color: #fece6d;
     height: 30px;
-    width: 90px;
+    width: 95px;
     padding: 10px;
     font-size: 20px;
     overflow: hidden;
     color: #d8572a;
     border-radius: 10px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 500;
 }
 .nav ul li a:hover{
     background-color: #db7c26;

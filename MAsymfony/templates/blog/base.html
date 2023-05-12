@@ -20,8 +20,12 @@
             <li><a href="tendance">Tendance</a></li>
             <li><a href="monblog">Mon blog</a></li>
             <li><a href="creer">Creer blog</a></li>
-            <li><a href="connexion">Connexion</a></li>
-            <li class="trait"><a href="inscription">Inscription</a></li>
+            {% if app.user %}
+                <li><a href="{{ path('app_logout')}}">deconnecter</a></li>
+            {% else %}
+                <li><a href="{{ path ('app_login')}}">Connexion</a></li>
+                <li class="trait"><a href="register">Inscription</a></li>
+            {% endif %}
         </ul>
       </section>
     </header>
