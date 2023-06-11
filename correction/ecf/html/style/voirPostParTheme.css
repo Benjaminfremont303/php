@@ -1,0 +1,29 @@
+form{
+    position: absolute;
+    top: 30vh;
+}
+.themes{
+    padding: 10px;
+}
+.posts{
+    position: absolute;
+    top: 40vh;
+}
+.postTitle{
+    background-color: aqua;    border: 1px solid black;
+
+}
+.postContent{
+    background-color: aliceblue;    border: 1px solid black;
+
+}
+.manage1{
+        position: absolute;
+        top: -10vh;
+        right: 20vw;  
+}
+.manage2{
+    position: absolute;
+    top: -10vh;
+    right: 30vw;  
+}

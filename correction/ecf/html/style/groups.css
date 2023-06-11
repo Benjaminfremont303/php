@@ -1,0 +1,17 @@
+.add{
+    position: absolute;
+    right: 10vh;
+}
+.descriptionTitre{
+    position: absolute;
+    top: 40vh;
+    background-color: pink;
+    padding: 20px;
+
+}
+.description{
+    position: absolute;
+    top: 50vh;
+    background-color: pink;
+    padding: 20px;
+}
