@@ -3,11 +3,15 @@
     <input name="descriptionGroup" type="text" placeholder="description du groupe">
 
     <fieldset>
-    <legend>choisir utilisateurs:</legend>
-    <div>
-      <input type="checkbox" id="usersGroup" name="userGroup" checked>
-      <label for="usersGroup">utilisateur: <?= $user ?></label>
-    </div>
+        <legend>choisir un groupe à modifier laissez vide pour creer:</legend>
+        <div>
+            <?php foreach ($allGroups as $groups) : ?>
+            <input type="checkbox" value="<?= $groups->id ?>" id="<?= $groups->name ?>" name="id">
+            <label for="<?= $groups->name ?>"><?= $groups->name ?></label>
+
+            <?php endforeach ?>
+        </div>
     </fieldset>
     <input type="submit" value="creer un groupe">
 </form>
+<?php var_dump($_POST) ?>

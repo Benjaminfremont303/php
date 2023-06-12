@@ -7,39 +7,40 @@ switch ($url) {
         require "../views/templates/header.php";
         require "../views/index.php";
         break;
-    case "VoirPostParTheme":  
-        require "../views/templates/header.php";  
+    case "VoirPostParTheme":
+        require "../views/templates/header.php";
         require '../model/db.php';
         require '../model/posts.php';
-        require "../model/themes.php";   
-        require "../model/users.php";          
+        require "../model/themes.php";
+        require "../model/users.php";
         require "voirPostParTheme.php";
         require '../views/voirPostParTheme.php';
         break;
-    case "modifierPosts":   
+    case "modifierPosts":
         require '../model/db.php';
         require '../model/posts.php';
-        require "../model/themes.php";    
-        require "../model/users.php";          
+        require "../model/themes.php";
+        require "../model/users.php";
         require "../views/templates/header.php";
         require "../views/modifierPosts.php";
         require "voirPostParTheme.php";
         break;
-    case "groups":         
+    case "groups":
         require '../model/db.php';
-        require "../model/groups.php";    
-        require "../model/users.php";         
+        require "../model/groups.php";
+        require "../model/users.php";
         require "controllerGroups.php";
         require "../views/templates/header.php";
         require "../views/groups.php";
         break;
-    case "addGroup":   
+    case "addGroup":
         require '../model/db.php';
-        require "../model/groups.php";    
-        require "../model/users.php";          
+        require "../model/groups.php";
+        require "../model/users.php";
+        require "controllerGroups.php";
+        require "controllerUsers.php";
         require "../views/templates/header.php";
         require "../views/addGroup.php";
-        require "controllerGroups.php";
         break;
     case "style/header.css":
         header("Content-type: text/css");

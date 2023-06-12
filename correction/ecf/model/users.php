@@ -1,11 +1,20 @@
 <?php
 include_once "db.php";
+/**
+ * Users
+ */
 class Users extends DB
 {
     protected string $prenom = "";
     protected string $email = "";
     protected string $password = "";
 
+    /**
+     * getUser
+     *
+     * @param  mixed $id
+     * @return Users
+     */
     public static function getUser(int $id): ?Users
     {
         $user = new Users();
@@ -20,6 +29,12 @@ class Users extends DB
             return $user;
         }
     }
+    /**
+     * getByEmail
+     *
+     * @param  mixed $email
+     * @return Users
+     */
     public static function getByEmail(string $email): ?Users
     {
         $user = new Users();
@@ -34,6 +49,12 @@ class Users extends DB
             return $user;
         }
     }
+    /**
+     * delete
+     *
+     * @param  mixed $id
+     * @return Users
+     */
     public static function delete(int $id): ?Users
     {
         $user = new Users();
@@ -48,6 +69,11 @@ class Users extends DB
             return $user;
         }
     }
+    /**
+     * listAll
+     *
+     * @return array
+     */
     public static function listAll(): array
     {
         $db = new DB();
@@ -55,6 +81,23 @@ class Users extends DB
         $request->execute();
         return $request->fetchAll(PDO::FETCH_CLASS, "Users");
     }
+    public static function getGroupByUsers($id)
+    {
+        $group = new Users();
+        $request = $group->prepare("SELECT users.* FROM users
+        INNER JOIN usersgroups on users.id=usersgroups.id_users
+        inner join groups on usersgroups.id_groups=tgroups.id
+        WHERE tgroups.id=:id");
+        $request->bindParam(":id", $id, PDO::PARAM_INT);
+        $request->execute();
+
+        return $request->fetchAll(PDO::FETCH_CLASS, "Users");
+    }
+    /**
+     * listPosts
+     *
+     * @return array
+     */
     public function listPosts(): array
     {
         $request = $this->prepare("select * from posts where id_theme=:id_theme");
@@ -62,6 +105,13 @@ class Users extends DB
         $request->execute();
         return $request->fetchAll(PDO::FETCH_CLASS, "Posts");
     }
+    /**
+     * Connexion
+     *
+     * @param  mixed $email
+     * @param  mixed $password
+     * @return void
+     */
     public static function Connexion($email, $password)
     {
         $conn = new Users();
@@ -72,6 +122,13 @@ class Users extends DB
         $result = $query->fetch();
         return (password_verify($password, $result->password));
     }
+    /**
+     * initialisationPass
+     *
+     * @param  mixed $email
+     * @param  mixed $password
+     * @return void
+     */
     public static function initialisationPass($email, $password)
     {
         $conn = new Users();
@@ -89,6 +146,11 @@ class Users extends DB
             $recup_insert->execute(array($password, $email));
         }
     }
+    /**
+     * save
+     *
+     * @return bool
+     */
     function save(): bool
     {
         try {
