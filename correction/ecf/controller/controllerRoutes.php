@@ -42,6 +42,20 @@ switch ($url) {
         require "../views/templates/header.php";
         require "../views/addGroup.php";
         break;
+    case "inscription":
+        require '../model/db.php';
+        require "../model/groups.php";
+        require "../model/users.php";
+        require "controllerInscription.php";
+        require "../views/inscription.php";
+        break;
+    case "connexion":
+        require '../model/db.php';
+        require "../model/groups.php";
+        require "../model/users.php";
+        require "controllerConnexion.php";
+        require "../views/connexion.php";
+        break;
     case "style/header.css":
         header("Content-type: text/css");
         require "../html/style/header.css";

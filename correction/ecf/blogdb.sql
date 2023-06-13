@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 11 juin 2023 à 23:19
+-- Généré le : lun. 12 juin 2023 à 15:05
 -- Version du serveur : 8.0.31
--- Version de PHP : 8.2.0
+-- Version de PHP : 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,19 +29,30 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
-  `Id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `description` text,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `groups`
 --
 
-INSERT INTO `groups` (`Id`, `name`, `description`) VALUES
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (2, 'team of guimauve', 'Un truc qui déchire grave'),
-(3, 'ForceMauve', 'la force, luke la force...');
+(3, 'ForceMauve', 'la force, luke la force...'),
+(7, 'Guimauvetivation', ',kgfjrkjkjrkljgkljrklgjkrlorem ipsom'),
+(8, 'guimauveDesEnfers', 'djjdkfjkfd'),
+(9, 'c&#039;est un groupe', 'effeefefqe'),
+(47, 'ssvsvfsvf', 'vfsvfsfv'),
+(48, ' ssvsvfsvf', 'vrrsr'),
+(49, 'ssvsvfsvf ', 'fefeef'),
+(50, 'a', ''),
+(52, 'gfhsghf', ''),
+(53, 'gmld', ''),
+(54, 'h;j;h;h', '');
 
 -- --------------------------------------------------------
 
@@ -154,7 +165,7 @@ ALTER TABLE `posts`
 -- Contraintes pour la table `usersgroups`
 --
 ALTER TABLE `usersgroups`
-  ADD CONSTRAINT `groups` FOREIGN KEY (`Id_groups`) REFERENCES `groups` (`Id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `groups` FOREIGN KEY (`Id_groups`) REFERENCES `groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `users` FOREIGN KEY (`Id_users`) REFERENCES `users` (`Id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 

@@ -17,6 +17,6 @@
         <li><a href="/">Acueill</a></li>
         <li><a href="VoirPostParTheme">Les derniers Posts</a></li>
         <li><a href="groups">Voir les groupes</a> </li>
-        <li><a href="">se connecter</a></li>
-        <li><a href="">s'incrire</a></li>
+        <li><a href="connexion">se connecter</a></li>
+        <li><a href="inscription">s'incrire</a></li>
     </ul>

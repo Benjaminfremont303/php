@@ -5,7 +5,7 @@ include_once "db.php";
  */
 class Users extends DB
 {
-    protected string $prenom = "";
+    protected string $username = "";
     protected string $email = "";
     protected string $password = "";
 
@@ -211,9 +211,9 @@ class Users extends DB
     /**
      * Get the value of prenom
      */
-    public function getPrenom()
+    public function getUsername()
     {
-        return $this->prenom;
+        return $this->username;
     }
 
     /**
@@ -221,9 +221,9 @@ class Users extends DB
      *
      * @return  self
      */
-    public function setPrenom($prenom)
+    public function setUsername($username)
     {
-        $this->prenom = $prenom;
+        $this->username = $username;
 
         return $this;
     }
